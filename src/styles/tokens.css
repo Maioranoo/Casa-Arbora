@@ -1,0 +1,55 @@
+:root {
+  color-scheme: light;
+  /* Cores */
+  --c-creme: #FBF6EE;
+  --c-bege: #F3EADB;
+  --c-bege-escuro: #E8DAC3;
+  --c-terracota: #B4532F;          /* AA com branco: 5.0:1 */
+  --c-terracota-escuro: #933F20;
+  --c-terracota-claro: #F6E3D8;     /* fundo da tag sazonal */
+  --c-terracota-tint: #FCF1EB;      /* tamanho selecionado */
+  --c-pessego: #F4C9B3;             /* manuscrita sobre marinho */
+  --c-salvia: #A9BA94;
+  --c-salvia-claro: #DCE5D0;
+  --c-oliva: #5E7132;
+  --c-oliva-escuro: #4D5D28;      /* texto sobre sálvia-claro: 5.5:1 */
+  --c-borda: #A3825F;              /* borda de abas/tamanhos não selecionados: 3.5:1 no branco, 3.3:1 no creme (WCAG 1.4.11) */
+  --c-marinho: #1F2D4A;
+  --c-texto: #2B3550;
+  --c-texto-suave: #55607A;
+  --c-branco: #FFFFFF;
+
+  /* Fontes */
+  --f-titulo: "Outfit", system-ui, sans-serif;
+  --f-corpo: "Nunito Sans", system-ui, sans-serif;
+  --f-manuscrita: "Caveat", cursive;
+
+  /* Escala tipográfica fluida (375px → 1440px) */
+  --fs-xs: 0.875rem;              /* só rótulos curtos; texto corrido usa --fs-base (≥16px) */
+  --fs-base: 1rem;
+  --fs-lg: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
+  --fs-xl: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
+  --fs-2xl: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+  --fs-3xl: clamp(2.375rem, 1.7rem + 3.2vw, 4.25rem);
+  --lh-titulo: 1.08;
+  --lh-corpo: 1.6;
+
+  /* Espaços (base 4px) */
+  --sp-1: 0.25rem; --sp-2: 0.5rem; --sp-3: 0.75rem; --sp-4: 1rem;
+  --sp-5: 1.5rem; --sp-6: 2rem; --sp-7: 2.5rem; --sp-8: 3rem;
+  --sp-9: 4rem; --sp-10: 6rem;
+
+  /* Raios e sombras */
+  --r-sm: 10px; --r-md: 16px; --r-lg: 24px; --r-pill: 999px;
+  --sh-sm: 0 1px 2px rgb(74 52 30 / 0.08), 0 2px 6px rgb(74 52 30 / 0.06);
+  --sh-md: 0 4px 12px rgb(74 52 30 / 0.08), 0 10px 24px rgb(74 52 30 / 0.06);
+  --sh-lg: 0 12px 32px rgb(74 52 30 / 0.12);
+
+  /* Layout e UX */
+  --toque: 44px;
+  --container: 1180px;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --header-h: 64px;
+  --dur-rapida: 200ms;
+  --ease-saida: cubic-bezier(0.22, 1, 0.36, 1);
+}

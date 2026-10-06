@@ -1,0 +1,63 @@
+/* Botões */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2); min-height: var(--toque); padding: 0 var(--sp-5); border-radius: var(--r-pill); border: 0; font-family: var(--f-titulo); font-weight: 600; font-size: var(--fs-base); text-decoration: none; cursor: pointer; transition: background-color var(--dur-rapida) var(--ease-saida), transform var(--dur-rapida) var(--ease-saida); }
+.btn:active { transform: scale(0.97); }
+.btn--primario { background: var(--c-terracota); color: var(--c-branco); box-shadow: var(--sh-sm); }
+@media (hover: hover) { .btn--primario:hover { background: var(--c-terracota-escuro); } }
+.btn--grande { min-height: 52px; padding: 0 var(--sp-6); font-size: var(--fs-lg); }
+.btn--bloco { width: 100%; }
+.btn--link { background: none; color: var(--c-marinho); text-decoration: underline; text-underline-offset: 4px; padding-inline: 0; transition: color var(--dur-rapida) var(--ease-saida); }
+@media (hover: hover) { .btn--link:hover { color: var(--c-terracota-escuro); } }
+
+/* Papel rasgado: svg posicionado na borda da seção, na cor da própria seção */
+.rasgado { position: absolute; left: 0; width: 100%; height: 18px; pointer-events: none; }
+.rasgado--topo { bottom: calc(100% - 1px); }
+.rasgado--base { top: calc(100% - 1px); transform: rotate(180deg); }
+
+/* Decorações */
+.deco { position: absolute; color: var(--c-salvia); opacity: 0.9; pointer-events: none; z-index: 0; }
+
+/* Tags e selos */
+.tags { display: flex; flex-wrap: wrap; gap: var(--sp-2); list-style: none; margin: 0 0 var(--sp-2); padding: 0; }
+.tag { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px 2px 4px; border-radius: var(--r-pill); background: var(--c-salvia-claro); color: var(--c-oliva-escuro); font-size: var(--fs-xs); font-weight: 700; }
+.tag img { width: 20px; height: 20px; }
+.tag--sazonal, .tag--sc { background: var(--c-terracota-claro); color: var(--c-terracota-escuro); padding-left: 10px; }
+
+/* Abas do cardápio */
+.abas { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin: var(--sp-5) 0 var(--sp-4); }
+.aba { min-height: var(--toque); padding: 0 var(--sp-4); border-radius: var(--r-pill); border: 1.5px solid var(--c-borda); background: var(--c-branco); color: var(--c-marinho); font-family: var(--f-titulo); font-weight: 600; cursor: pointer; position: relative; z-index: 1; transition: border-color var(--dur-rapida) var(--ease-saida), background-color var(--dur-rapida) var(--ease-saida); }
+@media (hover: hover) { .aba:not([aria-selected="true"]):hover { border-color: var(--c-marinho); background: var(--c-creme); } }
+.aba[aria-selected="true"] { background: var(--c-marinho); border-color: var(--c-marinho); color: var(--c-branco); }
+.painel__cabeca { position: relative; z-index: 1; background: var(--c-bege); border-radius: var(--r-md); padding: var(--sp-3) var(--sp-4); margin-bottom: var(--sp-4); }
+.painel__sub { font-family: var(--f-titulo); font-weight: 600; color: var(--c-marinho); }
+.painel__nota { font-size: var(--fs-base); color: var(--c-texto-suave); }
+
+/* Card de produto */
+.grade-produtos { display: grid; gap: var(--sp-5); }
+.produto { position: relative; z-index: 1; display: flex; flex-direction: column; background: var(--c-branco); border-radius: var(--r-lg); box-shadow: var(--sh-md); overflow: hidden; }
+.produto__foto { position: relative; aspect-ratio: 1; background: var(--c-bege); }
+.produto__foto img { width: 100%; height: 100%; object-fit: cover; }
+.produto__corpo { display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-4) var(--sp-4) var(--sp-5); flex: 1; }
+.produto__nome { font-size: var(--fs-xl); }
+.produto__desc { color: var(--c-texto-suave); font-size: var(--fs-base); }
+.tamanhos { border: 0; margin: var(--sp-2) 0 0; padding: 0; display: grid; gap: var(--sp-2); }
+.tamanho { display: grid; grid-template-columns: auto 1fr auto; align-items: center; column-gap: var(--sp-3); min-height: var(--toque); padding: var(--sp-2) var(--sp-3); border: 1.5px solid var(--c-borda); border-radius: var(--r-md); cursor: pointer; transition: border-color var(--dur-rapida) var(--ease-saida), background-color var(--dur-rapida) var(--ease-saida); }
+@media (hover: hover) { .tamanho:not(:has(input:checked)):hover { border-color: var(--c-marinho); } }
+.tamanho input { accent-color: var(--c-terracota); width: 20px; height: 20px; margin: 0; grid-row: span 2; }
+.tamanho__rotulo { font-weight: 700; color: var(--c-marinho); }
+.tamanho__detalhe { grid-column: 2; font-size: var(--fs-xs); color: var(--c-texto-suave); }
+.tamanho__preco { grid-column: 3; grid-row: 1 / span 2; font-weight: 700; color: var(--c-marinho); }
+.tamanho:has(input:checked) { border-color: var(--c-terracota); background: var(--c-terracota-tint); }
+.tamanho:has(input:focus-visible) { outline: 3px solid var(--c-terracota); outline-offset: 2px; }
+.opcao-unica { font-size: var(--fs-base); color: var(--c-texto-suave); }
+.produto__rodape { margin-top: auto; padding-top: var(--sp-3); display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); }
+.produto__preco { font-family: var(--f-titulo); font-weight: 800; font-size: var(--fs-xl); color: var(--c-marinho); }
+
+/* Pendências (só em dev) */
+.dev-pendente { position: absolute; top: 8px; left: 8px; z-index: 5; padding: 2px 8px; border: 2px dashed #D12; border-radius: 6px; background: #FFF4F4; color: #B00; font: 700 12px/1.4 system-ui, sans-serif; }
+[data-pendente] { position: relative; }
+/* Logo: etiqueta ao lado, para não cobrir a marca */
+/* Texto (história, depoimentos): etiqueta no fluxo, acima do texto, para não cobrir as primeiras palavras */
+p > .dev-pendente, .container > .dev-pendente { position: static; display: block; width: fit-content; margin-bottom: 8px; }
+
+/* Painéis do cardápio usam o atributo hidden: nenhuma regra de display pode revelá-los */
+.painel[hidden] { display: none; }

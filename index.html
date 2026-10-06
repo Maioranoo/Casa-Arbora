@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="pt-BR" class="carregando">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Casa Árbora — Bolos naturais Baby Friendly e veganos no ABC</title>
+    <meta name="description" content="Bolos e doces sem açúcar refinado, Baby Friendly e veganos, feitos à mão sob encomenda no ABC Paulista. Peça pelo WhatsApp." />
+    <meta name="theme-color" content="#FBF6EE" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/images/favicon.png" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <meta property="og:title" content="Casa Árbora — Bolos de verdade, doces por natureza" />
+    <meta property="og:description" content="Bolos e doces Baby Friendly e veganos, feitos sob encomenda no ABC Paulista." />
+    <meta property="og:image" content="/images/cardapio/festa-cacau-tamaras.jpg" /><!-- TODO(conteúdo) P13: trocar por URL absoluta quando houver domínio -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&family=Outfit:wght@600;800&display=swap" rel="stylesheet" />
+    <!-- Tela de carregamento: estilos inline para pintar antes de qualquer CSS externo (cores fixas, sem tokens) -->
+    <style>
+      /* Rede de segurança só-CSS (caso nenhum JS rode, ex.: script inline bloqueado): aos 6s o preloader some e o scroll volta */
+      html.carregando { overflow: hidden; animation: preloader-libera-scroll 0s 6s forwards; }
+      @keyframes preloader-libera-scroll { to { overflow: visible; } }
+      .preloader { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; background: #FBF6EE; opacity: 1; transition: opacity 300ms ease; animation: preloader-some 300ms ease 6s forwards; }
+      @keyframes preloader-some { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+      .preloader--saindo { opacity: 0; pointer-events: none; }
+      .preloader picture { display: block; }
+      .preloader__logo { display: block; height: min(240px, 36vh); width: auto; }
+      .preloader__bolo { display: block; width: 72px; height: 72px; animation: preloader-gira 1.4s linear infinite; }
+      @keyframes preloader-gira { to { transform: rotate(360deg); } }
+      @media (prefers-reduced-motion: reduce) { .preloader__bolo { animation: none; } }
+    </style>
+    <noscript><style>.preloader { display: none; } html.carregando { overflow: auto; }</style></noscript>
+    <script data-preloader="seguranca">
+      // Rede de segurança: se o JS principal falhar (erro, download bloqueado, navegador antigo), libera a página em 6s.
+      // O initPreloader (src/js/preloader.js) cancela este timer assim que começa.
+      window.__casaPreloaderTimer = setTimeout(function () {
+        var d = document
+        d.documentElement.classList.remove('carregando')
+        var p = d.querySelector('.preloader')
+        if (p && p.parentNode) p.parentNode.removeChild(p)
+        var els = d.querySelectorAll('.topo, #conteudo, .rodape')
+        for (var i = 0; i < els.length; i++) els[i].removeAttribute('inert')
+      }, 6000)
+    </script>
+    <link rel="stylesheet" href="/src/styles/tokens.css" />
+    <link rel="stylesheet" href="/src/styles/base.css" />
+    <link rel="stylesheet" href="/src/styles/components.css" />
+    <link rel="stylesheet" href="/src/styles/sections.css" />
+  </head>
+  <body>
+  <div class="preloader" role="status" aria-live="polite" aria-label="Carregando">
+    <picture>
+      <source srcset="/images/logo-preloader.webp" type="image/webp">
+      <img class="preloader__logo" src="/images/logo-preloader.png" alt="" width="309" height="480">
+    </picture>
+    <picture>
+      <source srcset="/images/bolo-topo.webp" type="image/webp">
+      <img class="preloader__bolo" src="/images/bolo-topo.png" alt="" width="72" height="72">
+    </picture>
+  </div>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- Sprite de ícones -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-folha" viewBox="0 0 64 64"><path d="M8 56C8 28 28 8 56 8c0 28-20 48-48 48Z" fill="currentColor"/><path d="M10 54 46 18" stroke="#fff" stroke-opacity=".45" stroke-width="2.5" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="i-sem-acucar" viewBox="0 0 32 32"><rect x="7" y="9" width="14" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M11 9v-2.5h6V9M5 27 27 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-natural" viewBox="0 0 32 32"><path d="M6 26C6 14 14 6 26 6c0 12-8 20-20 20Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M6 26 18 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-mao" viewBox="0 0 32 32"><path d="M16 27s-10-6-10-13a5.5 5.5 0 0 1 10-3 5.5 5.5 0 0 1 10 3c0 7-10 13-10 13Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.8 8.2c.2-.5.5-.5.8-.5h.5c.2 0 .4 0 .6.5l.7 1.6c.1.2 0 .4-.1.6l-.5.6c-.1.1-.2.3 0 .5.4.7 1.5 1.9 2.8 2.4.2.1.4 0 .5-.1l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.4.2.4.4 0 .6-.3 1.3-.9 1.6-.6.3-1.4.4-2.6-.1-1.6-.6-3.2-2-4.1-3.5-.7-1.2-.9-2.3-.9-2.7 0-.5.2-1 .5-1.3Z" fill="currentColor"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-fechar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="rasgado" viewBox="0 0 1200 24" preserveAspectRatio="none"><path d="M0 24V10l30 4 26-7 34 6 28-5 30 7 36-8 24 5 40-3 22 6 38-7 30 4 26-6 42 8 30-5 28 4 36-7 26 6 34-4 30 5 40-8 22 6 36-3 28 5 34-7 30 6 26-5 38 7 32-6 24 4 40-5 30 6 28-7 36 5 22 3 40-4 34 6 38-5 32 3V24Z" fill="currentColor"/></symbol>
+  </svg>
+
+  <header class="topo">
+    <div class="container topo__linha">
+      <a class="topo__logo" href="#inicio" aria-label="Casa Árbora — início">
+        <picture>
+          <source srcset="/images/logo.webp" type="image/webp">
+          <img src="/images/logo.png" alt="Casa Árbora" width="339" height="120">
+        </picture>
+      </a>
+      <button class="topo__menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+        <svg class="ico-abrir" width="26" height="26"><use href="#i-menu"/></svg>
+        <svg class="ico-fechar" width="26" height="26"><use href="#i-fechar"/></svg>
+      </button>
+      <nav class="topo__nav" id="menu-principal" aria-label="Principal">
+        <ul>
+          <li><a href="#cardapio">Cardápio</a></li>
+          <li><a href="#ingredientes">Ingredientes</a></li>
+          <li><a href="#encomendar">Como encomendar</a></li>
+        </ul>
+        <a class="btn btn--primario" data-whatsapp href="https://wa.me/5511942237434">Encomendar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo" tabindex="-1">
+    <!-- 1. HERO -->
+    <section class="hero" id="inicio">
+      <div class="cake-layer" aria-hidden="true">
+        <!-- Trocar a foto do bolo animado: public/images/bolo-topo.webp + bolo-topo.png (quadrados, fundo transparente; o script regera os dois) -->
+        <div class="cake-sombra"></div>
+        <picture>
+          <source srcset="/images/bolo-topo.webp" type="image/webp">
+          <img class="cake" src="/images/bolo-topo.png" alt="" width="670" height="670" fetchpriority="high">
+        </picture>
+      </div>
+      <svg class="deco deco--folha-1" data-parallax="-30" width="90" height="90" aria-hidden="true"><use href="#i-folha"/></svg>
+      <svg class="deco deco--folha-2" data-parallax="40" width="60" height="60" aria-hidden="true"><use href="#i-folha"/></svg>
+      <div class="container hero__conteudo">
+        <p class="manuscrita hero__kicker">Feito à mão, sem açúcar refinado</p>
+        <h1 class="hero__titulo">Bolos de verdade, doces por natureza</h1>
+        <p class="hero__sub">Bolos e doces Baby Friendly e veganos, adoçados com frutas frescas e secas. Feitos sob encomenda no ABC Paulista.</p>
+        <div class="hero__acoes">
+          <a class="btn btn--primario btn--grande" href="#cardapio">Ver cardápio <svg width="20" height="20" aria-hidden="true"><use href="#i-seta"/></svg></a>
+          <a class="btn btn--link" href="#encomendar">Fazer encomenda</a>
+        </div>
+        <ul class="selos-hero">
+          <li><svg width="28" height="28" aria-hidden="true"><use href="#i-sem-acucar"/></svg>Sem açúcar refinado</li>
+          <li><svg width="28" height="28" aria-hidden="true"><use href="#i-natural"/></svg>Ingredientes naturais</li>
+          <li><svg width="28" height="28" aria-hidden="true"><use href="#i-mao"/></svg>Feito à mão</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 2. COMO ESCOLHER -->
+    <section class="secao faixa" id="como-escolher" aria-labelledby="t-escolher">
+      <svg class="rasgado rasgado--topo" aria-hidden="true"><use href="#rasgado"/></svg>
+      <div class="container">
+        <h2 class="secao__titulo" id="t-escolher" data-reveal>Para todo mundo comer junto</h2>
+        <ul class="selos-lista">
+          <li class="selo-item" data-reveal>
+            <img src="/images/selos/baby-friendly.png" alt="" width="96" height="96" loading="lazy" decoding="async">
+            <div><h3>Baby Friendly</h3><p>A partir de 9 meses. Sem açúcar adicionado, sem adoçantes, sem polióis, sem glúten, sem leite, sem lactose, sem caseína e sem ingredientes de origem animal. Adoçado com frutas frescas e secas.</p></div>
+          </li>
+          <li class="selo-item" data-reveal>
+            <img src="/images/selos/sem-gluten.png" alt="" width="96" height="96" loading="lazy" decoding="async">
+            <div><h3>Sem glúten</h3><p>Toda a linha Baby Friendly, os bolos veganos e a granola.</p></div>
+          </li>
+          <li class="selo-item" data-reveal>
+            <img src="/images/selos/vegano.png" alt="" width="96" height="96" loading="lazy" decoding="async">
+            <div><h3>100% Vegano</h3><p>Sem ingredientes de origem animal. A linha vegana tradicional é adoçada com açúcar demerara orgânico.</p></div>
+          </li>
+        </ul>
+        <p class="faixa__nota">Tem alergia, intolerância ou galactosemia? Conte antes de encomendar — avaliamos o preparo e o risco de contaminação cruzada. Galactosemia: somente sob anamnese prévia.</p>
+      </div>
+      <svg class="rasgado rasgado--base" aria-hidden="true"><use href="#rasgado"/></svg>
+    </section>
+
+    <!-- 3. CARDÁPIO (gerado a partir de src/data/cardapio.js) -->
+    <section class="secao cardapio" id="cardapio" aria-labelledby="t-cardapio">
+      <div class="container">
+        <p class="manuscrita" data-reveal>Escolha o seu</p>
+        <h2 class="secao__titulo" id="t-cardapio" data-reveal>Cardápio</h2>
+        <p class="secao__sub" data-reveal>Toque numa categoria, escolha o tamanho e encomende pelo WhatsApp.</p>
+        <div class="cardapio__app" data-cardapio>
+          <noscript><p>Veja o cardápio completo pelo <a href="https://wa.me/5511942237434">WhatsApp</a>.</p></noscript>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. INGREDIENTES -->
+    <section class="secao ingredientes" id="ingredientes" aria-labelledby="t-ingredientes">
+      <svg class="rasgado rasgado--topo" aria-hidden="true"><use href="#rasgado"/></svg>
+      <div class="container">
+        <h2 class="secao__titulo" id="t-ingredientes" data-reveal>O que vai dentro</h2>
+        <p class="secao__sub" data-reveal>Doçura de fruta, sabor de verdade.</p>
+        <ul class="ingredientes__grade">
+          <li data-reveal><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 40c10 10 32 8 42-14l-4-3c-6 14-22 20-36 12Z" fill="#F2C94C"/><path d="M50 23l4-5" stroke="#6B4E2E" stroke-width="3" stroke-linecap="round"/></svg>Banana</li>
+          <li data-reveal><svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="32" rx="12" ry="20" fill="#7A4A2A" transform="rotate(25 32 32)"/><path d="M28 18c-3 6-3 16 2 26" stroke="#A86B43" stroke-width="3" fill="none" stroke-linecap="round"/></svg>Tâmara</li>
+          <li data-reveal><svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="32" rx="14" ry="22" fill="#8B4A2B"/><path d="M32 10v44M24 13c-3 12-3 26 0 38M40 13c3 12 3 26 0 38" stroke="#6A3420" stroke-width="2.5" fill="none"/></svg>Cacau</li>
+          <li data-reveal><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="22" cy="38" r="9" fill="#3B4A7A"/><circle cx="40" cy="40" r="9" fill="#2E3B66"/><path d="M32 30c-8-2-12-10-8-18 4 2 8 0 8 0s4 2 8 0c4 8 0 16-8 18Z" fill="#D9453B"/><path d="M28 12l4-4 4 4" stroke="#5E7132" stroke-width="3" fill="none" stroke-linecap="round"/></svg>Frutas vermelhas</li>
+          <li data-reveal><svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="32" rx="22" ry="15" fill="#F4D35E"/><circle cx="32" cy="32" r="10" fill="#FBE9A6"/><path d="M32 22v20M22 32h20M25 25l14 14M39 25 25 39" stroke="#F4D35E" stroke-width="2"/></svg>Limão siciliano</li>
+          <li data-reveal><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="20" fill="#7B5434"/><circle cx="32" cy="32" r="14" fill="#FFF8EC"/></svg>Coco</li>
+          <li data-reveal><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 44c-6-10 0-24 12-26 8 12 2 26-12 26Z" fill="#C58B52"/><path d="M36 48c-4-12 4-24 16-24 4 14-4 24-16 24Z" fill="#A86B3C"/></svg>Castanhas</li>
+          <li data-reveal><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 22c-10-6-22 0-20 14 2 12 10 20 20 16 10 4 18-4 20-16 2-14-10-20-20-14Z" fill="#D9453B"/><path d="M32 22c0-6 2-10 6-12" stroke="#6B4E2E" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M36 14c6-4 12-2 12-2s-4 8-12 6Z" fill="#5E7132"/></svg>Maçã</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5. DEPOIMENTOS -->
+    <section class="secao depoimentos" id="depoimentos" aria-labelledby="t-depoimentos">
+      <div class="container" data-pendente="depoimentos reais (P9)">
+        <h2 class="secao__titulo" id="t-depoimentos" data-reveal>Quem provou, conta</h2>
+        <!-- TODO(conteúdo) P9: TROCAR pelos depoimentos reais (com autorização) -->
+        <ul class="depoimentos__lista">
+          <li class="depoimento" data-reveal><blockquote><p>“O bolo do primeiro aniversário da minha filha foi o sucesso da festa. Os adultos repetiram!”</p></blockquote><p class="depoimento__autor">Mariana · Santo André</p></li>
+          <li class="depoimento" data-reveal><blockquote><p>“Sou diabético e finalmente achei um bolo que eu como sem culpa e que é gostoso de verdade.”</p></blockquote><p class="depoimento__autor">Roberto · São Bernardo do Campo</p></li>
+          <li class="depoimento" data-reveal><blockquote><p>“Os muffins viraram o lanche da escola aqui em casa. Congelo e vou usando na semana.”</p></blockquote><p class="depoimento__autor">Juliana · São Caetano do Sul</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 6. COMO ENCOMENDAR -->
+    <section class="secao encomendar" id="encomendar" aria-labelledby="t-encomendar">
+      <svg class="rasgado rasgado--topo" aria-hidden="true"><use href="#rasgado"/></svg>
+      <div class="container encomendar__grade">
+        <div>
+          <h2 class="secao__titulo" id="t-encomendar" data-reveal>Como encomendar</h2>
+          <ol class="passos">
+            <li data-reveal><span class="passos__num">1</span><div><h3>Escolha no cardápio</h3><p>Sabor e tamanho — ou um kit para festa e escola.</p></div></li>
+            <li data-reveal><span class="passos__num">2</span><div><h3>Mande no WhatsApp</h3><p>Data, número de convidados, restrições alimentares e sabor. Peça com pelo menos 5 dias de antecedência.</p></div></li>
+            <li data-reveal><span class="passos__num">3</span><div><h3>Confirme com o pagamento</h3><p>O pagamento antecipado confirma a encomenda (Pix ou link de cartão).</p></div></li>
+            <li data-reveal><span class="passos__num">4</span><div><h3>Entrega ou retirada</h3><p>A combinar no ABC Paulista. Consulte as condições de frete.</p></div></li>
+          </ol>
+          <a class="btn btn--primario btn--grande btn--bloco" data-whatsapp href="https://wa.me/5511942237434" data-reveal>
+            <svg width="22" height="22" aria-hidden="true"><use href="#i-whatsapp"/></svg> Pedir pelo WhatsApp
+          </a>
+          <p class="encomendar__marque">Ao postar, marque <a href="https://www.instagram.com/casaarbora/" target="_blank" rel="noopener">@casaarbora</a> 💛</p>
+        </div>
+        <img class="encomendar__foto" src="/images/deco/frutas-folha.jpg" alt="" width="700" height="700" loading="lazy" data-parallax="-20">
+      </div>
+    </section>
+  </main>
+
+  <!-- 7. RODAPÉ -->
+  <footer class="rodape">
+    <svg class="rasgado rasgado--topo" aria-hidden="true"><use href="#rasgado"/></svg>
+    <div class="container rodape__conteudo">
+      <picture class="rodape__logo">
+        <source srcset="/images/logo-claro.webp" type="image/webp">
+        <img src="/images/logo-claro.png" alt="Casa Árbora" width="274" height="96" loading="lazy">
+      </picture>
+      <p class="manuscrita rodape__frase">Feito com muito carinho</p>
+      <ul class="rodape__social">
+        <li><a href="https://www.instagram.com/casaarbora/" target="_blank" rel="noopener" aria-label="Instagram @casaarbora"><svg width="24" height="24" aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
+        <li><a data-whatsapp href="https://wa.me/5511942237434" aria-label="WhatsApp (11) 94223-7434"><svg width="24" height="24" aria-hidden="true"><use href="#i-whatsapp"/></svg></a></li>
+      </ul>
+      <p>WhatsApp (11) 94223-7434 · ABC Paulista - SP</p>
+      <p class="rodape__copy">© <span data-ano>2026</span> Casa Árbora</p>
+    </div>
+  </footer>
+
+  <script data-preloader="inert">
+    // Enquanto o preloader cobre a tela, o conteúdo atrás fica inerte (sem foco/leitor de tela). Sem JS, não roda.
+    (function () {
+      var els = document.querySelectorAll('.topo, #conteudo, .rodape')
+      for (var i = 0; i < els.length; i++) els[i].setAttribute('inert', '')
+    })()
+  </script>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
