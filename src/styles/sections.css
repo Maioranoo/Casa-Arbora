@@ -112,7 +112,7 @@
   .topo__menu-btn { display: none; }
   .topo__nav { position: static; display: flex; align-items: center; gap: var(--sp-6); padding: 0; background: none; box-shadow: none; visibility: visible; opacity: 1; transform: none; }
   .topo__nav ul { display: flex; gap: var(--sp-5); }
-  .topo__nav ul a { min-height: var(--toque); border: 0; font-size: var(--fs-base); }
+  .topo__nav ul a { min-height: var(--toque); min-width: var(--toque); justify-content: center; border: 0; font-size: var(--fs-base); }
   @media (hover: hover) { .topo__nav ul a:hover { color: var(--c-terracota); } }
   .hero { display: flex; align-items: center; padding-bottom: var(--sp-9); min-height: min(calc(100svh - var(--header-h)), 820px); }
   .hero__conteudo { width: min(100% - 2 * var(--gutter), var(--container)); }
