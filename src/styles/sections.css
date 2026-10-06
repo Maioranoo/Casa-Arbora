@@ -22,7 +22,7 @@
 .selos-hero li { display: grid; justify-items: start; gap: var(--sp-1); font-size: var(--fs-xs); font-weight: 700; color: var(--c-marinho); line-height: 1.25; }
 .selos-hero svg { color: var(--c-oliva); }
 .deco--folha-1 { top: 8%; right: -22px; transform: rotate(40deg); }
-.deco--folha-2 { top: 46%; left: -18px; transform: rotate(-120deg); }
+.deco--folha-2 { display: none; top: 46%; left: -18px; transform: rotate(-120deg); }
 
 /* Bolo: estático por padrão (sem JS / reduced motion), fixo quando animado */
 .cake-layer { position: absolute; z-index: 0; pointer-events: none; right: -18vw; bottom: -6vw; width: 84vw; aspect-ratio: 1; }
@@ -92,6 +92,7 @@
 /* ---------- Tablet ---------- */
 @media (min-width: 768px) {
   .hero { padding-bottom: 66vw; }
+  .deco--folha-2 { display: block; }
   .cake-layer { width: 60vw; right: -8vw; bottom: -4vw; }
   .selos-lista { grid-template-columns: repeat(3, 1fr); }
   .selo-item { grid-template-columns: 1fr; justify-items: center; text-align: center; }

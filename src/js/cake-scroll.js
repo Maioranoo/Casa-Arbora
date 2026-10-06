@@ -20,7 +20,7 @@ export function initCakeScroll({ layer = document.querySelector('.cake-layer'), 
 
   const mm = gsap.matchMedia()
   mm.add(
-    { motion: '(prefers-reduced-motion: no-preference)', desktop: '(min-width: 1100px)' },
+    { motion: '(prefers-reduced-motion: no-preference)', desktop: '(min-width: 1100px)', tablet: '(min-width: 768px) and (max-width: 1099px)' },
     ({ conditions }) => {
       if (!conditions.motion) return
       measure()
@@ -44,7 +44,9 @@ export function initCakeScroll({ layer = document.querySelector('.cake-layer'), 
         yPercent: conditions.desktop ? -10 : -70,
         duration: 1,
       }, 0)
-      tl.to(cake, { opacity: 0, duration: 0.35 }, 0.65)
+      // Tablet: o bolo fica grande ao lado do título do cardápio; some antes para não atrapalhar a leitura.
+      if (conditions.tablet) tl.to(cake, { opacity: 0, duration: 0.2 }, 0.1)
+      else tl.to(cake, { opacity: 0, duration: 0.35 }, 0.65)
       if (import.meta.env.DEV) window.__cakeST = tl.scrollTrigger
       return () => {
         ScrollTrigger.removeEventListener('refreshInit', onRefreshInit)
