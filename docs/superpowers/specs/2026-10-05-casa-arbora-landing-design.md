@@ -34,7 +34,7 @@ public/images/
   bolo-topo.png            # bolo real visto de cima, recortado em círculo, fundo transparente (animação)
   cardapio/*.jpg           # fotos reais, uma por item (nomes = id do item)
   selos/baby-friendly.png, sem-gluten.png, vegano.png   # selos com fundo transparente
-  confeiteira.jpg          # placeholder (trocar pela foto da Tânia)
+  confeiteira.jpg          # placeholder ilustrado (trocar pela foto da Tânia)
   deco/*                   # folhas e ingredientes decorativos
 src/
   config.js                # marca, WhatsApp, Instagram, mensagens prontas
@@ -172,7 +172,7 @@ Conteúdo:
 
 - **Cardápio:** fotos reais dos PDFs, recortadas/otimizadas (~800px no maior lado, JPEG ~80), uma por item, nome = id do item. Itens sem foto própria usam a melhor foto da categoria (ex.: veganos sem foto, muffins por sabor, kits); o mapeamento item → foto é revisado visualmente numa folha de contato antes de fechar.
 - **Selos:** `2.jpg`, `3.jpg`, `4.jpg` enviados → PNG com fundo transparente (recorte circular).
-- **Placeholders** (Unsplash, baixados localmente): foto da confeiteira e decorações que faltarem. Marcados no README.
+- **Placeholders:** a foto da confeiteira é um placeholder ilustrado (não usamos foto de terceiros que pareça ser a Tânia); decorações são SVG próprios e recortes das fotos reais. Marcados no README.
 - `width`/`height` explícitos, `loading="lazy"` fora do hero, `alt` descritivo.
 - README com a tabela "o que trocar e onde".
 
@@ -223,7 +223,7 @@ Itens marcados assim aparecem em três lugares: (a) nesta tabela; (b) no código
 | P4 | **Fotos: Kits** (Primeira Festinha, Escolinha, Festa) | composição com fotos de bolo + docinhos/muffins | `public/images/cardapio/kit-*.jpg` |
 | P5 | **Foto em boa resolução: Veganos Laranja e Chocolate & Banana** | usa a foto do PDF antigo (~550px, aceitável no celular) | `public/images/cardapio/vegano-laranja.jpg`, `vegano-chocolate-banana.jpg` |
 | P6 | **Descrição dos 6 bolos veganos** (ingredientes/decoração) | texto padrão "Bolo vegano de {sabor}, adoçado com açúcar demerara orgânico." | `src/data/cardapio.js` |
-| P7 | **Foto da Tânia** | placeholder Unsplash | `public/images/confeiteira.jpg` |
+| P7 | **Foto da Tânia** | placeholder ilustrado | `public/images/confeiteira.jpg` |
 | P8 | **História da Tânia** (2–4 frases) | texto provisório marcado | `index.html` → seção `#sobre` |
 | P9 | **Depoimentos reais** (3, com nome e cidade, com autorização) | 3 exemplos fictícios | `index.html` → seção `#depoimentos` |
 | P10 | **Logo em vetor (SVG) ou PNG em alta** | logo extraído do PDF (500–1000px), vetorizado/limpo | `public/images/logo.svg` |
