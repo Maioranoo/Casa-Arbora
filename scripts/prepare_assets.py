@@ -69,7 +69,7 @@ def logo(img, cor, destino, corte=None):
 
 # ---- Fotos do cardápio: id -> imagem ----
 CARDAPIO = {
-    "classico-limao-mirtilos": GPT[9],
+    "classico-limao-mirtilos": SET[1],
     "classico-banana-amoras": SET[21],
     "classico-banana-maca": SET[20],
     "classico-cacau-tamaras": SET[19],
@@ -125,7 +125,8 @@ def main():
         salvar_jpg(img, OUT / "cardapio" / f"{id_}.jpg")
     # Bolo visto de cima (ajustar BOLO_* olhando a prévia gerada)
     b = SET[19]
-    BOLO_CX, BOLO_CY, BOLO_R = 440, 458, 380  # bolo ocupa x≈35–845, y≈62–855 em 872x894
+    assert b.size == (872, 894), b.size  # fonte mudou: reajustar BOLO_*
+    BOLO_CX, BOLO_CY, BOLO_R = 440, 458, 335  # círculo inscrito no topo do bolo (sem caixa/prato)
     circulo(b, BOLO_CX, BOLO_CY, BOLO_R, 900).save(OUT / "bolo-topo.png", optimize=True)
     # Logo real (TODO(conteúdo) P10: substituir por vetor oficial)
     logo(GPT[4], (31, 45, 74), OUT / "logo.png")
