@@ -21,7 +21,7 @@ describe('dados', () => {
   })
   it('contagem por categoria e linhas ajustadas (v3)', () => {
     const n = Object.fromEntries(categorias.map((c) => [c.id, c.itens.length]))
-    expect(n).toEqual({ classicos: 7, festa: 3, veganos: 5, docinhos: 3, muffins: 1, granola: 1, kits: 3 })
+    expect(n).toEqual({ classicos: 7, festa: 4, veganos: 5, docinhos: 3, muffins: 1, granola: 1, kits: 3 })
     expect(categorias.find((c) => c.id === 'veganos').itens.every((i) => i.tags.includes('vg') && i.tags.includes('sg'))).toBe(true)
     const ids = categorias.flatMap((c) => c.itens.map((i) => i.id))
     for (const x of ['vegano-laranja', 'classico-maca-baunilha-nozes', 'muffin-banana', 'muffin-cacau']) expect(ids).not.toContain(x)
@@ -101,6 +101,15 @@ describe('renderCardapio', () => {
     expect(card.querySelector('.produto__preco').textContent).toBe('Sob consulta')
     expect(card.querySelector('[data-pedido]').textContent.trim()).toBe('Consultar')
     expect(root.innerHTML).not.toContain('NaN')
+  })
+
+  it('bolo sem preço ainda (Maçã & Baunilha) aparece como Sob consulta, com Consultar e mensagem de consulta', () => {
+    const card = root.querySelector('[data-item="festa-maca-baunilha"]')
+    expect(card.querySelector('.produto__preco').textContent).toBe('Sob consulta')
+    expect(card.querySelector('input[type="radio"]')).toBeNull()
+    const link = card.querySelector('[data-pedido]')
+    expect(link.textContent.trim()).toBe('Consultar')
+    expect(decode(link.href)).toBe('Olá, Casa Árbora! Gostaria de saber mais sobre o bolo Maçã & Baunilha (Festa).')
   })
 
   it('etiquetas de pendência só aparecem com dev: true', () => {

@@ -93,6 +93,7 @@ Para regerar as imagens a partir dos PDFs, coloque os arquivos em `assets-src/` 
 | P10 | **Logo em vetor (SVG)** | resolvida para web com as versões raster de 1000 px; SVG ainda é o ideal | `public/images/logo.*`, `logo-claro.*`, `logo-preloader.*` |
 | P13 | **Domínio, hospedagem e imagem de compartilhamento** | `og:image` relativo, precisa virar URL absoluta ao publicar | `index.html` → `<meta property="og:image">` |
 | P14 | **Preços em revisão:** a Tânia vai recalcular os custos de todos os itens | preços atuais mantidos | `src/data/cardapio.js` |
+| P15 | **Bolo de Maçã & Baunilha (aba Festa):** descrição, tags (Baby Friendly/vegano?) e preços | aparece como "Sob consulta" com descrição provisória "Bolo de maçã e baunilha." e botão "Consultar" | `src/data/cardapio.js` (item `festa-maca-baunilha`) |
 
 ---
 

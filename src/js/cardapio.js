@@ -9,8 +9,12 @@ export function formatPreco(preco) {
   return fmt.format(preco).replace(/\s/g, ' ')
 }
 
+// Sem preço definido ainda (kits ou itens novos): botão "Consultar" e mensagem de consulta.
+const sobConsulta = (item) => item.tipo === 'kit' || item.opcoes.every((o) => o.preco == null)
+
 export function mensagemItem(categoria, item, opcao) {
   if (item.tipo === 'kit') return config.mensagens.kit(item.nome)
+  if (sobConsulta(item)) return config.mensagens.kit(`bolo ${item.nome} (${categoria.nome})`)
   return config.mensagens.item({
     categoria: categoria.nome, item: item.nome,
     rotulo: opcao.rotulo, detalhe: opcao.detalhe, preco: formatPreco(opcao.preco),
@@ -58,7 +62,7 @@ function cardHTML(categoria, item, dev) {
       <div class="produto__rodape">
         <p class="produto__preco" aria-live="polite">${formatPreco(o.preco)}</p>
         <a class="btn btn--primario" data-pedido href="${buildWhatsAppUrl(mensagemItem(categoria, item, o))}" target="_blank" rel="noopener"
-           aria-label="${item.tipo === 'kit' ? 'Consultar' : 'Encomendar'} ${esc(item.nome)} pelo WhatsApp">${item.tipo === 'kit' ? 'Consultar' : 'Encomendar'}</a>
+           aria-label="${sobConsulta(item) ? 'Consultar' : 'Encomendar'} ${esc(item.nome)} pelo WhatsApp">${sobConsulta(item) ? 'Consultar' : 'Encomendar'}</a>
       </div>
     </div>
   </article>`

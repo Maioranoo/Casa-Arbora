@@ -158,6 +158,7 @@ CARDAPIO = {
     "festa-limao-mirtilos": SET[5],
     "festa-cacau-tamaras": SET[6],
     "festa-damasco-banana": SET[7],
+    "festa-maca-baunilha": Image.open(SRC / "extras" / "festa-maca-baunilha.jpg").convert("RGB"),  # foto enviada à parte
     "vegano-chocolatudo": SET[8],
     "vegano-limao-siciliano": SET[10],
     "vegano-chocolate-banana": ANT[0],            # TODO(conteúdo) P5: baixa resolução

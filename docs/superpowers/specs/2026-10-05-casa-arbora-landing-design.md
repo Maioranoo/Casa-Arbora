@@ -219,6 +219,7 @@ Itens marcados assim aparecem em três lugares: (a) nesta tabela; (b) no código
 | P10 | **Logo em vetor (SVG) ou PNG em alta** | resolvida para web com as variações raster 1000px do PDF de logos; SVG vetorial ainda ideal | `public/images/logo.*`, `logo-claro.*`, `logo-preloader.*` |
 | P13 | Domínio/hospedagem e imagem de compartilhamento (Open Graph) | fora do escopo; OG usa foto do bolo de festa | `index.html` `<meta property="og:image">` |
 | P14 | **Preços em revisão:** a Tânia vai recalcular os custos de todos os itens | preços atuais mantidos | `src/data/cardapio.js` |
+| P15 | **Bolo de Maçã & Baunilha (aba Festa):** descrição, tags (Baby Friendly/vegano?) e preços | aparece como "Sob consulta" com descrição provisória "Bolo de maçã e baunilha." e botão "Consultar" | `src/data/cardapio.js` (item `festa-maca-baunilha`) |
 
 ## 14. Entrega
 

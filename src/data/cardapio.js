@@ -73,6 +73,10 @@ export const categorias = [
       { id: 'festa-damasco-banana', nome: 'Damasco & Banana', tags: ['bf'],
         descricao: 'Massa de damascos e banana. Recheio de frutas vermelhas com creme de laranja e damasco. Cobertura de creme de laranja, damascos e frutas vermelhas frescas.',
         foto: img('festa-damasco-banana'), alt: 'Bolo de festa com morangos, mirtilos e uvas', opcoes: [P_FESTA, M_FESTA] },
+      { id: 'festa-maca-baunilha', nome: 'Maçã & Baunilha', tags: ['sc'],
+        descricao: 'Bolo de maçã e baunilha.', // TODO(conteúdo) P15: descrição, tags e preços (a Tânia vai enviar)
+        foto: img('festa-maca-baunilha'), alt: 'Bolo coberto de creme, decorado com fatias de maçã, mirtilos e hortelã',
+        opcoes: [SOB_CONSULTA], pendente: ['descricao', 'preco'] },
     ],
   },
   {
