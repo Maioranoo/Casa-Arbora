@@ -25,13 +25,13 @@ describe('dados', () => {
 })
 
 describe('mensagemItem', () => {
-  it('monta a mensagem com categoria, tamanho e preço', () => {
+  it('monta a mensagem com item, categoria e tamanho', () => {
     const c = categorias[0]; const i = c.itens[3]
-    expect(mensagemItem(c, i, i.opcoes[1])).toContain('Clássicos — Cacau & Tâmaras, Médio (12 a 14 fatias · 1,2 kg), R$ 230.')
+    expect(mensagemItem(c, i, i.opcoes[1])).toBe('Olá, Casa Árbora! Gostaria de fazer uma encomenda: Cacau & Tâmaras (Clássicos), tamanho Médio.')
   })
   it('kit usa a mensagem de consulta', () => {
     const c = categorias.at(-1); const i = c.itens[1]
-    expect(mensagemItem(c, i, i.opcoes[0])).toContain('Quero saber os valores do Kit Escolinha.')
+    expect(mensagemItem(c, i, i.opcoes[0])).toBe('Olá, Casa Árbora! Gostaria de saber mais sobre o Kit Escolinha.')
   })
 })
 
@@ -75,11 +75,11 @@ describe('renderCardapio', () => {
   it('trocar o tamanho atualiza preço e link do WhatsApp', () => {
     const card = root.querySelector('[data-item="classico-cacau-tamaras"]')
     const link = card.querySelector('[data-pedido]')
-    expect(decode(link.href)).toContain('Pequeno (9 a 10 fatias · 900 g), R$ 160.')
+    expect(decode(link.href)).toBe('Olá, Casa Árbora! Gostaria de fazer uma encomenda: Cacau & Tâmaras (Clássicos), tamanho Pequeno.')
     const medio = card.querySelector('input[value="1"]')
     medio.checked = true; medio.dispatchEvent(new Event('change', { bubbles: true }))
     expect(card.querySelector('.produto__preco').textContent).toBe('R$ 230')
-    expect(decode(link.href)).toContain('Médio (12 a 14 fatias · 1,2 kg), R$ 230.')
+    expect(decode(link.href)).toBe('Olá, Casa Árbora! Gostaria de fazer uma encomenda: Cacau & Tâmaras (Clássicos), tamanho Médio.')
     expect(link.href.startsWith('https://wa.me/5511942237434?text=')).toBe(true)
   })
 

@@ -1,6 +1,5 @@
 // Dados da marca — troque aqui nome, WhatsApp, Instagram e textos das mensagens.
 const brandName = 'Casa Árbora'
-const roteiro = '\nData: \nConvidados: \nRestrições: '
 
 export default {
   brandName,
@@ -8,9 +7,10 @@ export default {
   instagramUser: 'casaarbora',
   instagramUrl: 'https://www.instagram.com/casaarbora/',
   mensagens: {
-    generica: `Olá, ${brandName}! Quero fazer uma encomenda.${roteiro}\nSabor: `,
-    item: ({ categoria, item, rotulo, detalhe, preco }) =>
-      `Olá, ${brandName}! Quero encomendar: ${categoria} — ${item}, ${rotulo}${detalhe ? ` (${detalhe})` : ''}, ${preco}.${roteiro}`,
-    kit: (nomeKit) => `Olá, ${brandName}! Quero saber os valores do ${nomeKit}.${roteiro}`,
+    generica: `Olá, ${brandName}! Gostaria de fazer uma encomenda.`,
+    // detalhe e preco também chegam aqui (não usados) — use-os se quiser uma mensagem mais completa
+    item: ({ categoria, item, rotulo }) =>
+      `Olá, ${brandName}! Gostaria de fazer uma encomenda: ${item} (${categoria}), tamanho ${rotulo}.`,
+    kit: (nomeKit) => `Olá, ${brandName}! Gostaria de saber mais sobre o ${nomeKit}.`,
   },
 }

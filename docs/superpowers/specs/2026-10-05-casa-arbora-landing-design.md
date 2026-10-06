@@ -163,9 +163,9 @@ Conteúdo:
 
 - `config.js` exporta `brandName`, `whatsappNumber`, `instagramUser` e os modelos de mensagem.
 - `whatsapp.js` exporta `buildWhatsAppUrl(texto)` → `https://wa.me/<numero>?text=<encodeURIComponent(texto)>` e aplica em elementos `[data-whatsapp]` (`target="_blank"`, `rel="noopener"`).
-- Mensagem de item: "Olá, Casa Árbora! Quero encomendar: {categoria} — {item}, {tamanho} ({detalhe}), {preço}. Data: __ · Convidados: __ · Restrições: __". Atualizada ao trocar o tamanho.
-- Mensagem de kit: "Olá, Casa Árbora! Quero saber os valores do {kit}. Data: __ · Convidados: __ · Restrições: __".
-- Mensagem genérica: "Olá, Casa Árbora! Quero fazer uma encomenda. Data: __ · Convidados: __ · Restrições: __ · Sabor: __".
+- Mensagem de item: "Olá, Casa Árbora! Gostaria de fazer uma encomenda: {item} ({categoria}), tamanho {tamanho}." (ex.: "… Cacau & Tâmaras (Clássicos), tamanho Médio."). Atualizada ao trocar o tamanho. Detalhe e preço não entram na mensagem (ajustes v2: mensagens mais simples).
+- Mensagem de kit: "Olá, Casa Árbora! Gostaria de saber mais sobre o {kit}."
+- Mensagem genérica: "Olá, Casa Árbora! Gostaria de fazer uma encomenda." (sem roteiro de Data/Convidados/Restrições — o passo 2 de "Como encomendar" orienta o que contar na conversa).
 - Fallback sem JS: `href` base `https://wa.me/5511942237434`.
 
 ## 10. Imagens

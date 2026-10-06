@@ -14,12 +14,19 @@ describe('buildWhatsAppUrl', () => {
 })
 
 describe('mensagens', () => {
-  it('mensagem de item traz categoria, item, tamanho, detalhe e preço', () => {
-    const msg = config.mensagens.item({ categoria: 'Clássicos', item: 'Cacau & Tâmaras', rotulo: 'Médio', detalhe: '12 a 14 fatias · 1,2 kg', preco: 'R$ 230' })
-    expect(msg).toBe('Olá, Casa Árbora! Quero encomendar: Clássicos — Cacau & Tâmaras, Médio (12 a 14 fatias · 1,2 kg), R$ 230.\nData: \nConvidados: \nRestrições: ')
+  it('mensagem genérica é curta e sem roteiro', () => {
+    expect(config.mensagens.generica).toBe('Olá, Casa Árbora! Gostaria de fazer uma encomenda.')
   })
-  it('mensagem de kit pede valores', () => {
-    expect(config.mensagens.kit('Kit Escolinha')).toBe('Olá, Casa Árbora! Quero saber os valores do Kit Escolinha.\nData: \nConvidados: \nRestrições: ')
+  it('mensagem de item traz item, categoria e tamanho (sem detalhe/preço)', () => {
+    const msg = config.mensagens.item({ categoria: 'Clássicos', item: 'Cacau & Tâmaras', rotulo: 'Médio', detalhe: '12 a 14 fatias · 1,2 kg', preco: 'R$ 230' })
+    expect(msg).toBe('Olá, Casa Árbora! Gostaria de fazer uma encomenda: Cacau & Tâmaras (Clássicos), tamanho Médio.')
+  })
+  it('mensagem de kit pede para saber mais', () => {
+    expect(config.mensagens.kit('Kit Escolinha')).toBe('Olá, Casa Árbora! Gostaria de saber mais sobre o Kit Escolinha.')
+  })
+  it('nenhuma mensagem traz o roteiro Data/Convidados/Restrições', () => {
+    const todas = [config.mensagens.generica, config.mensagens.item({ categoria: 'a', item: 'b', rotulo: 'c', detalhe: 'd', preco: 'e' }), config.mensagens.kit('k')].join(' ')
+    expect(todas).not.toMatch(/Data:|Convidados:|Restrições:/)
   })
 })
 
