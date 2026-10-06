@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 // Bolo do hero: gira, encolhe e some até o fim do #cardapio (scrub = acompanha o scroll nos dois sentidos).
-export function initCakeScroll({ layer = document.querySelector('.cake-layer'), endTrigger = '#cardapio' } = {}) {
+export function initCakeScroll({ layer = document.querySelector('.cake-layer'), endTrigger = '#cardapio', fadeTrigger = '#como-escolher' } = {}) {
   const cake = layer?.querySelector('.cake')
   if (!cake || !document.querySelector(endTrigger)) return
 
@@ -20,7 +20,7 @@ export function initCakeScroll({ layer = document.querySelector('.cake-layer'), 
 
   const mm = gsap.matchMedia()
   mm.add(
-    { motion: '(prefers-reduced-motion: no-preference)', desktop: '(min-width: 1100px)', tablet: '(min-width: 768px) and (max-width: 1099px)' },
+    { motion: '(prefers-reduced-motion: no-preference)', desktop: '(min-width: 1100px)' },
     ({ conditions }) => {
       if (!conditions.motion) return
       measure()
@@ -40,13 +40,28 @@ export function initCakeScroll({ layer = document.querySelector('.cake-layer'), 
       tl.to(cake, {
         rotation: 540,
         scale: 0,
-        xPercent: conditions.desktop ? 25 : 10,
+        xPercent: conditions.desktop ? 40 : 10,
         yPercent: conditions.desktop ? -10 : -70,
         duration: 1,
       }, 0)
-      // Tablet: o bolo fica grande ao lado do título do cardápio; some antes para não atrapalhar a leitura.
-      if (conditions.tablet) tl.to(cake, { opacity: 0, duration: 0.2 }, 0.1)
-      else tl.to(cake, { opacity: 0, duration: 0.35 }, 0.65)
+      if (conditions.desktop) {
+        tl.to(cake, { opacity: 0, duration: 0.35 }, 0.65)
+      } else {
+        // Mobile/tablet: o bolo é grande e fica sob o texto do cardápio, então some antes (a faixa opaca "Como escolher" o cobre
+        // no meio do caminho); escala/rotação continuam até o fim do #cardapio. No desktop o bolo fica à direita e não cobre texto.
+        gsap.to(cake, {
+          opacity: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: fadeTrigger,
+            start: 'top 70%',
+            endTrigger,
+            end: 'top bottom',
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+        })
+      }
       if (import.meta.env.DEV) window.__cakeST = tl.scrollTrigger
       return () => {
         ScrollTrigger.removeEventListener('refreshInit', onRefreshInit)
