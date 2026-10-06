@@ -48,6 +48,19 @@ def bbox_fora_do_fundo(img, limiar=40):
     mascara = mascara.filter(ImageFilter.MinFilter(15)).filter(ImageFilter.MaxFilter(15))
     return mascara.getbbox()
 
+def limpar_transparentes(img):
+    """Zera o RGB dos pixels 100% transparentes (comprime melhor, sem mudar o visual)."""
+    img = img.convert("RGBA")
+    preto = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    return Image.composite(img, preto, img.getchannel("A").point(lambda a: 255 if a else 0))
+
+def salvar_png_alfa(img, destino, cores=256):
+    """PNG com transparência, quantizado (paleta com alfa) e otimizado."""
+    img = limpar_transparentes(img)
+    if cores:
+        img = img.quantize(colors=cores, method=Image.Quantize.FASTOCTREE, dither=Image.Dither.FLOYDSTEINBERG)
+    img.save(destino, optimize=True)
+
 def selo(nome):
     img = Image.open(SRC / "selos" / f"{nome}.jpg").convert("RGB")
     x0, y0, x1, y1 = bbox_fora_do_fundo(img)
@@ -55,17 +68,19 @@ def selo(nome):
     r = min(x1 - x0, y1 - y0) // 2 - 4
     destino = OUT / "selos" / f"{nome}.png"
     destino.parent.mkdir(parents=True, exist_ok=True)
-    circulo(img, cx, cy, r, 360).save(destino, optimize=True)
+    # 192px = 2x do maior uso (96px em "Como escolher"); nas tags aparece a 20px
+    salvar_png_alfa(circulo(img, cx, cy, r, 192), destino)
 
-def logo(img, cor, destino, corte=None):
-    """Line-art escuro sobre branco → PNG transparente na cor dada."""
+def logo(img, cor, destino, corte=None, altura=None):
+    """Line-art escuro sobre branco → PNG transparente na cor dada (altura: ~3x a altura exibida)."""
     g = ImageOps.grayscale(img)
     if corte: g = g.crop(corte)
     alpha = ImageOps.invert(g).point(lambda v: 0 if v < 40 else min(255, int(v * 1.4)))
     bbox = alpha.getbbox(); alpha = alpha.crop(bbox)
     out = Image.new("RGBA", alpha.size, cor + (0,)); out.putalpha(alpha)
-    out.thumbnail((600, 600), Image.LANCZOS)
-    destino.parent.mkdir(parents=True, exist_ok=True); out.save(destino, optimize=True)
+    out.thumbnail((600, altura or 600), Image.LANCZOS)
+    destino.parent.mkdir(parents=True, exist_ok=True); salvar_png_alfa(out, destino)
+    return out
 
 # ---- Fotos do cardápio: id -> imagem ----
 CARDAPIO = {
@@ -127,16 +142,21 @@ def main():
     b = SET[19]
     assert b.size == (872, 894), b.size  # fonte mudou: reajustar BOLO_*
     BOLO_CX, BOLO_CY, BOLO_R = 440, 458, 335  # círculo inscrito no topo do bolo (sem caixa/prato)
-    circulo(b, BOLO_CX, BOLO_CY, BOLO_R, 900).save(OUT / "bolo-topo.png", optimize=True)
-    # Logo real (TODO(conteúdo) P10: substituir por vetor oficial)
-    logo(GPT[4], (31, 45, 74), OUT / "logo.png")
-    logo(GPT[4], (251, 246, 238), OUT / "logo-claro.png")
+    # Sem ampliar além do recorte da fonte (2*BOLO_R = 670px). WebP com alfa (principal) + PNG de fallback.
+    bolo = limpar_transparentes(circulo(b, BOLO_CX, BOLO_CY, BOLO_R, 2 * BOLO_R))
+    bolo.save(OUT / "bolo-topo.webp", "WEBP", quality=78, method=6, exact=False)
+    salvar_png_alfa(bolo, OUT / "bolo-topo.png")
+    # Logo real (TODO(conteúdo) P10: substituir por vetor oficial). Exibido a 52px (topo) e 96px (rodapé).
+    logo(GPT[4], (31, 45, 74), OUT / "logo.png", altura=156)
+    logo(GPT[4], (251, 246, 238), OUT / "logo-claro.png", altura=288)
     w, h = GPT[4].size
-    logo(GPT[4], (31, 45, 74), OUT / "favicon.png", corte=(0, 0, w, int(h * 0.62)))
-    Image.open(OUT / "favicon.png").resize((64, 64), Image.LANCZOS).save(OUT / "favicon.png")
+    fav = logo(GPT[4], (31, 45, 74), OUT / "favicon.png", corte=(0, 0, w, int(h * 0.62)))
+    lado = max(fav.size)  # completa até quadrado (sem distorcer) antes de reduzir
+    quadro = Image.new("RGBA", (lado, lado), (31, 45, 74, 0))
+    quadro.paste(fav, ((lado - fav.width) // 2, (lado - fav.height) // 2))
+    salvar_png_alfa(quadro.resize((64, 64), Image.LANCZOS), OUT / "favicon.png")
     # Decorações
     salvar_jpg(quadrada(SET[18], 700), OUT / "deco" / "frutas-folha.jpg")
-    salvar_jpg(quadrada(GPT[17], 700), OUT / "deco" / "frutas.jpg")
     placeholder_confeiteira()
     print("ok")
 

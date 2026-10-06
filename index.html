@@ -35,7 +35,7 @@
   <header class="topo">
     <div class="container topo__linha">
       <a class="topo__logo" href="#inicio" aria-label="Casa Árbora — início" data-pendente="logo em vetor (P10)">
-        <img src="/images/logo.png" alt="Casa Árbora" width="386" height="600">
+        <img src="/images/logo.png" alt="Casa Árbora" width="100" height="156">
       </a>
       <button class="topo__menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
         <svg class="ico-abrir" width="26" height="26"><use href="#i-menu"/></svg>
@@ -53,12 +53,16 @@
     </div>
   </header>
 
-  <main id="conteudo">
+  <main id="conteudo" tabindex="-1">
     <!-- 1. HERO -->
     <section class="hero" id="inicio">
       <div class="cake-layer" aria-hidden="true">
-        <!-- Trocar a foto do bolo animado: public/images/bolo-topo.png (PNG quadrado, fundo transparente) -->
-        <img class="cake" src="/images/bolo-topo.png" alt="" width="900" height="900" fetchpriority="high">
+        <!-- Trocar a foto do bolo animado: public/images/bolo-topo.webp + bolo-topo.png (quadrados, fundo transparente; o script regera os dois) -->
+        <div class="cake-sombra"></div>
+        <picture>
+          <source srcset="/images/bolo-topo.webp" type="image/webp">
+          <img class="cake" src="/images/bolo-topo.png" alt="" width="670" height="670" fetchpriority="high">
+        </picture>
       </div>
       <svg class="deco deco--folha-1" data-parallax="-30" width="90" height="90" aria-hidden="true"><use href="#i-folha"/></svg>
       <svg class="deco deco--folha-2" data-parallax="40" width="60" height="60" aria-hidden="true"><use href="#i-folha"/></svg>
@@ -85,15 +89,15 @@
         <h2 class="secao__titulo" id="t-escolher" data-reveal>Para todo mundo comer junto</h2>
         <ul class="selos-lista">
           <li class="selo-item" data-reveal>
-            <img src="/images/selos/baby-friendly.png" alt="" width="96" height="96" loading="lazy">
+            <img src="/images/selos/baby-friendly.png" alt="" width="96" height="96" loading="lazy" decoding="async">
             <div><h3>Baby Friendly</h3><p>A partir de 9 meses. Sem açúcar adicionado, sem adoçantes, sem polióis, sem glúten, sem leite, sem lactose, sem caseína e sem ingredientes de origem animal. Adoçado com frutas frescas e secas.</p></div>
           </li>
           <li class="selo-item" data-reveal>
-            <img src="/images/selos/sem-gluten.png" alt="" width="96" height="96" loading="lazy">
+            <img src="/images/selos/sem-gluten.png" alt="" width="96" height="96" loading="lazy" decoding="async">
             <div><h3>Sem glúten</h3><p>Toda a linha Baby Friendly e a granola artesanal.</p></div>
           </li>
           <li class="selo-item" data-reveal>
-            <img src="/images/selos/vegano.png" alt="" width="96" height="96" loading="lazy">
+            <img src="/images/selos/vegano.png" alt="" width="96" height="96" loading="lazy" decoding="async">
             <div><h3>100% Vegano</h3><p>Sem ingredientes de origem animal. A linha vegana tradicional é adoçada com açúcar demerara orgânico.</p></div>
           </li>
         </ul>
@@ -190,7 +194,7 @@
   <footer class="rodape">
     <svg class="rasgado rasgado--topo" aria-hidden="true"><use href="#rasgado"/></svg>
     <div class="container rodape__conteudo">
-      <img src="/images/logo-claro.png" alt="Casa Árbora" width="386" height="600" loading="lazy">
+      <img src="/images/logo-claro.png" alt="Casa Árbora" width="185" height="288" loading="lazy">
       <p class="manuscrita rodape__frase">Feito com muito carinho</p>
       <ul class="rodape__social">
         <li><a href="https://www.instagram.com/casaarbora/" target="_blank" rel="noopener" aria-label="Instagram @casaarbora"><svg width="24" height="24" aria-hidden="true"><use href="#i-instagram"/></svg></a></li>

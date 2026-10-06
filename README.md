@@ -15,14 +15,14 @@ npm run build    # gera dist/ para publicar (sem etiquetas)
 | Itens, descrições, tamanhos e preços do cardápio | `src/data/cardapio.js` |
 | Textos das seções (hero, como escolher, sobre, depoimentos, como encomendar, rodapé) | `index.html` |
 | Fotos do cardápio | `public/images/cardapio/<id-do-item>.jpg` (quadradas, ~800px) |
-| Bolo animado do topo | `public/images/bolo-topo.png` (quadrado, fundo transparente) |
+| Bolo animado do topo | `public/images/bolo-topo.webp` (principal) **e** `bolo-topo.png` (fallback) — quadrados, fundo transparente, ~670px. Trocou um, troque o outro (ou ajuste o recorte `BOLO_*` no script e rode-o: ele gera os dois) |
 | Foto da Tânia | `public/images/confeiteira.jpg` (retrato 4:5) |
-| Logo | `public/images/logo.png` (escuro) e `logo-claro.png` (rodapé), `favicon.png` |
-| Selos | `public/images/selos/*.png` |
+| Logo | `public/images/logo.png` (escuro, ~156px de altura) e `logo-claro.png` (rodapé, ~288px), `favicon.png` (64x64). Ao trocar, ajuste `width`/`height` das `<img>` no `index.html` |
+| Selos | `public/images/selos/*.png` (192x192, fundo transparente) |
 | Cores, fontes, espaçamentos | `src/styles/tokens.css` |
 | Número do WhatsApp nos links sem JavaScript | `index.html` (procure `wa.me/5511942237434`) |
 
-Regerar as imagens a partir dos PDFs: coloque os arquivos em `assets-src/` e rode `python scripts/prepare_assets.py`.
+Regerar as imagens a partir dos PDFs: coloque os arquivos em `assets-src/` e rode `python scripts/prepare_assets.py` (requer `pip install pymupdf pillow`; gera fotos, bolo em WebP + PNG, selos, logos e favicon já otimizados).
 
 ## Pendências de conteúdo
 | # | O quê | Situação no site até chegar | Onde trocar |
