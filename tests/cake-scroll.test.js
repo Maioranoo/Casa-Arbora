@@ -28,7 +28,7 @@ describe('initCakeScroll', () => {
     expect(layer.style.getPropertyValue('--cake-left')).toBe('0px')
     expect(layer.style.getPropertyValue('--cake-size')).toBe('0px')
   })
-  it('com reduced motion: bolo estático, sem fixed', async () => {
+  it('com reduced motion: bolo estÃ¡tico, sem fixed', async () => {
     mockMatchMedia(true)
     const { initCakeScroll } = await import('../src/js/cake-scroll.js')
     initCakeScroll()

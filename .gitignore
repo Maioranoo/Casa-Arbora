@@ -2,3 +2,5 @@ node_modules/
 dist/
 assets-src/
 __pycache__/
+
+.playwright-mcp/
