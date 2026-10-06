@@ -29,3 +29,4 @@ button { font: inherit; color: inherit; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .skip-link { position: absolute; left: var(--sp-4); top: -100px; background: var(--c-marinho); color: var(--c-branco); padding: var(--sp-3) var(--sp-4); border-radius: var(--r-sm); z-index: 100; }
 .skip-link:focus { top: var(--sp-2); }
+#conteudo:focus { outline: none; } /* alvo do skip link (tabindex="-1"): recebe o foco, sem contorno na seção inteira */

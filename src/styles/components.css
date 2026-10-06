@@ -24,8 +24,8 @@
 
 /* Abas do cardápio */
 .abas { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin: var(--sp-5) 0 var(--sp-4); }
-.aba { min-height: var(--toque); padding: 0 var(--sp-4); border-radius: var(--r-pill); border: 1.5px solid var(--c-bege-escuro); background: var(--c-branco); color: var(--c-marinho); font-family: var(--f-titulo); font-weight: 600; cursor: pointer; position: relative; z-index: 1; transition: border-color var(--dur-rapida) var(--ease-saida), background-color var(--dur-rapida) var(--ease-saida); }
-@media (hover: hover) { .aba:not([aria-selected="true"]):hover { border-color: var(--c-caramelo); background: var(--c-creme); } }
+.aba { min-height: var(--toque); padding: 0 var(--sp-4); border-radius: var(--r-pill); border: 1.5px solid var(--c-borda); background: var(--c-branco); color: var(--c-marinho); font-family: var(--f-titulo); font-weight: 600; cursor: pointer; position: relative; z-index: 1; transition: border-color var(--dur-rapida) var(--ease-saida), background-color var(--dur-rapida) var(--ease-saida); }
+@media (hover: hover) { .aba:not([aria-selected="true"]):hover { border-color: var(--c-marinho); background: var(--c-creme); } }
 .aba[aria-selected="true"] { background: var(--c-marinho); border-color: var(--c-marinho); color: var(--c-branco); }
 .painel__cabeca { position: relative; z-index: 1; background: var(--c-bege); border-radius: var(--r-md); padding: var(--sp-3) var(--sp-4); margin-bottom: var(--sp-4); }
 .painel__sub { font-family: var(--f-titulo); font-weight: 600; color: var(--c-marinho); }
@@ -40,8 +40,8 @@
 .produto__nome { font-size: var(--fs-xl); }
 .produto__desc { color: var(--c-texto-suave); font-size: var(--fs-base); }
 .tamanhos { border: 0; margin: var(--sp-2) 0 0; padding: 0; display: grid; gap: var(--sp-2); }
-.tamanho { display: grid; grid-template-columns: auto 1fr auto; align-items: center; column-gap: var(--sp-3); min-height: var(--toque); padding: var(--sp-2) var(--sp-3); border: 1.5px solid var(--c-bege-escuro); border-radius: var(--r-md); cursor: pointer; transition: border-color var(--dur-rapida) var(--ease-saida), background-color var(--dur-rapida) var(--ease-saida); }
-@media (hover: hover) { .tamanho:hover { border-color: var(--c-caramelo); } }
+.tamanho { display: grid; grid-template-columns: auto 1fr auto; align-items: center; column-gap: var(--sp-3); min-height: var(--toque); padding: var(--sp-2) var(--sp-3); border: 1.5px solid var(--c-borda); border-radius: var(--r-md); cursor: pointer; transition: border-color var(--dur-rapida) var(--ease-saida), background-color var(--dur-rapida) var(--ease-saida); }
+@media (hover: hover) { .tamanho:not(:has(input:checked)):hover { border-color: var(--c-marinho); } }
 .tamanho input { accent-color: var(--c-terracota); width: 20px; height: 20px; margin: 0; grid-row: span 2; }
 .tamanho__rotulo { font-weight: 700; color: var(--c-marinho); }
 .tamanho__detalhe { grid-column: 2; font-size: var(--fs-xs); color: var(--c-texto-suave); }

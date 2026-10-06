@@ -20,10 +20,11 @@ export function mensagemItem(categoria, item, opcao) {
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]))
 
 function tagsHTML(tags) {
-  return `<ul class="tags" aria-label="Características">${tags.map((t) => {
+  // Tag desconhecida (erro de digitação em src/data/cardapio.js) é ignorada em vez de quebrar o cardápio inteiro
+  return `<ul class="tags" aria-label="Características">${tags.filter((t) => Object.hasOwn(TAGS, t)).map((t) => {
     const tag = TAGS[t]
-    const selo = tag.selo ? `<img src="${tag.selo}" alt="" width="20" height="20">` : ''
-    return `<li class="tag tag--${t}">${selo}${esc(tag.rotulo)}</li>`
+    const selo = tag.selo ? `<img src="${esc(tag.selo)}" alt="" width="20" height="20" loading="lazy" decoding="async">` : ''
+    return `<li class="tag tag--${esc(t)}">${selo}${esc(tag.rotulo)}</li>`
   }).join('')}</ul>`
 }
 
@@ -35,7 +36,7 @@ function opcoesHTML(item) {
   }
   return `<fieldset class="tamanhos"><legend class="sr-only">Escolha o tamanho de ${esc(item.nome)}</legend>${item.opcoes.map((o, idx) => `
     <label class="tamanho">
-      <input type="radio" name="tam-${item.id}" value="${idx}" ${idx === 0 ? 'checked' : ''}>
+      <input type="radio" name="tam-${esc(item.id)}" value="${idx}" ${idx === 0 ? 'checked' : ''}>
       <span class="tamanho__rotulo">${esc(o.rotulo)}</span>
       <span class="tamanho__detalhe">${esc(o.detalhe)}</span>
       <span class="tamanho__preco">${formatPreco(o.preco)}</span>
@@ -47,8 +48,8 @@ function cardHTML(categoria, item, dev) {
   const pend = dev && item.pendente?.length
     ? `<span class="dev-pendente">PENDENTE: ${item.pendente.join(', ')}</span>` : ''
   return `
-  <article class="produto" data-item="${item.id}">
-    <div class="produto__foto">${pend}<img src="${item.foto}" alt="${esc(item.alt)}" width="800" height="800" loading="lazy" decoding="async"></div>
+  <article class="produto" data-item="${esc(item.id)}">
+    <div class="produto__foto">${pend}<img src="${esc(item.foto)}" alt="${esc(item.alt)}" width="800" height="800" loading="lazy" decoding="async"></div>
     <div class="produto__corpo">
       ${tagsHTML(item.tags)}
       <h3 class="produto__nome">${esc(item.nome)}</h3>
@@ -98,6 +99,9 @@ export function renderCardapio(root, categorias = dadosPadrao, { dev = false } =
     })
   })
 
+  // Um único ouvinte de "change" por root, mesmo se o cardápio for renderizado de novo
+  root._cardapioAbort?.abort()
+  root._cardapioAbort = new AbortController()
   root.addEventListener('change', (e) => {
     if (e.target.type !== 'radio') return
     const card = e.target.closest('.produto')
@@ -106,7 +110,7 @@ export function renderCardapio(root, categorias = dadosPadrao, { dev = false } =
     const opcao = item.opcoes[Number(e.target.value)]
     card.querySelector('.produto__preco').textContent = formatPreco(opcao.preco)
     card.querySelector('[data-pedido]').href = buildWhatsAppUrl(mensagemItem(cat, item, opcao))
-  })
+  }, { signal: root._cardapioAbort.signal })
 }
 
 export function initCardapio(root = document.querySelector('[data-cardapio]')) {

@@ -108,4 +108,46 @@ describe('renderCardapio', () => {
     expect(img.getAttribute('height')).toBe('800')
     expect(img.getAttribute('loading')).toBe('lazy')
   })
+
+  it('selos das tags são lazy/async', () => {
+    const selo = root.querySelector('.tag img')
+    expect(selo.getAttribute('loading')).toBe('lazy')
+    expect(selo.getAttribute('decoding')).toBe('async')
+  })
+
+  it('tag desconhecida é ignorada sem quebrar o cardápio', () => {
+    const dados = [{ id: 'x', nome: 'X', subtitulo: '', nota: '', itens: [
+      { id: 'x-1', nome: 'Bolo X', tags: ['bf', 'nao-existe'], descricao: 'd', foto: '/images/cardapio/x.jpg', alt: 'alt x', opcoes: [{ rotulo: 'Único', detalhe: '', preco: 10 }] },
+    ] }]
+    expect(() => renderCardapio(root, dados)).not.toThrow()
+    const tags = root.querySelectorAll('[data-item="x-1"] .tag')
+    expect(tags).toHaveLength(1)
+    expect(tags[0].textContent).toBe('Baby Friendly')
+  })
+
+  it('escapa id e foto nos atributos', () => {
+    const dados = [{ id: 'x', nome: 'X', subtitulo: '', nota: '', itens: [
+      { id: 'a"b', nome: 'X', tags: [], descricao: 'd', foto: '/f.jpg" onerror="alert(1)', alt: 'alt x', opcoes: [{ rotulo: 'Único', detalhe: '', preco: 10 }] },
+    ] }]
+    renderCardapio(root, dados)
+    const card = root.querySelector('.produto')
+    expect(card.dataset.item).toBe('a"b')
+    const img = card.querySelector('.produto__foto img')
+    expect(img.getAttribute('src')).toBe('/f.jpg" onerror="alert(1)')
+    expect(img.hasAttribute('onerror')).toBe(false)
+  })
+
+  it('renderizar de novo não acumula ouvintes de change no root', () => {
+    const add = vi.spyOn(root, 'addEventListener')
+    renderCardapio(root, categorias)
+    renderCardapio(root, categorias)
+    const sinais = add.mock.calls.filter(([tipo]) => tipo === 'change').map(([, , opts]) => opts.signal)
+    expect(sinais).toHaveLength(2)
+    expect(sinais.filter((s) => !s.aborted)).toHaveLength(1)
+    // e o ouvinte ativo continua funcionando (atualiza o preço uma vez)
+    const card = root.querySelector('[data-item="classico-cacau-tamaras"]')
+    const medio = card.querySelector('input[value="1"]')
+    medio.checked = true; medio.dispatchEvent(new Event('change', { bubbles: true }))
+    expect(card.querySelector('.produto__preco').textContent).toBe('R$ 230')
+  })
 })

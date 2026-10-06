@@ -13,7 +13,7 @@
   --c-salvia-claro: #DCE5D0;
   --c-oliva: #5E7132;
   --c-oliva-escuro: #4D5D28;      /* texto sobre sálvia-claro: 5.5:1 */
-  --c-caramelo: #A87B4F;
+  --c-borda: #A3825F;              /* borda de abas/tamanhos não selecionados: 3.5:1 no branco, 3.3:1 no creme (WCAG 1.4.11) */
   --c-marinho: #1F2D4A;
   --c-texto: #2B3550;
   --c-texto-suave: #55607A;
