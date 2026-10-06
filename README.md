@@ -17,12 +17,15 @@ npm run build    # gera dist/ para publicar (sem etiquetas)
 | Fotos do cardápio | `public/images/cardapio/<id-do-item>.jpg` (quadradas, ~800px) |
 | Bolo animado do topo | `public/images/bolo-topo.webp` (principal) **e** `bolo-topo.png` (fallback) — quadrados, fundo transparente, ~670px. Trocou um, troque o outro (ou ajuste o recorte `BOLO_*` no script e rode-o: ele gera os dois) |
 | Foto da Tânia | `public/images/confeiteira.jpg` (retrato 4:5) |
-| Logo | `public/images/logo.png` (escuro, ~156px de altura) e `logo-claro.png` (rodapé, ~288px), `favicon.png` (64x64). Ao trocar, ajuste `width`/`height` das `<img>` no `index.html` |
+| Logo do topo | `public/images/logo.webp` + `logo.png` (wordmark marrom, fundo transparente, 120px de altura = 3x dos 40px exibidos) |
+| Logo do rodapé | `public/images/logo-claro.webp` + `logo-claro.png` (wordmark creme, transparente, 96px de altura; exibido a 56px) |
+| Logo da tela de carregamento | `public/images/logo-preloader.webp` + `logo-preloader.png` (planta + wordmark terracota, 480px de altura = 2x) |
+| Ícones (aba e tela inicial do celular) | `public/images/favicon-32.png` (32x32), `favicon.png` (64x64), `apple-touch-icon.png` (180x180, sem transparência). Todos gerados de `assets-src/logos.pdf` pelo script; ao trocar logos à mão, ajuste `width`/`height` das `<img>` no `index.html` |
 | Selos | `public/images/selos/*.png` (192x192, fundo transparente) |
 | Cores, fontes, espaçamentos | `src/styles/tokens.css` |
 | Número do WhatsApp nos links sem JavaScript | `index.html` (procure `wa.me/5511942237434`) |
 
-Regerar as imagens a partir dos PDFs: coloque os arquivos em `assets-src/` e rode `python scripts/prepare_assets.py` (requer `pip install pymupdf pillow`; gera fotos, bolo em WebP + PNG, selos, logos e favicon já otimizados).
+Regerar as imagens a partir dos PDFs: coloque os arquivos em `assets-src/` e rode `python scripts/prepare_assets.py` (requer `pip install pymupdf pillow numpy`; gera fotos, bolo em WebP + PNG, selos, logos — de `assets-src/logos.pdf`, pág. 2 — e ícones já otimizados).
 
 ## Pendências de conteúdo
 | # | O quê | Situação no site até chegar | Onde trocar |
@@ -36,7 +39,7 @@ Regerar as imagens a partir dos PDFs: coloque os arquivos em `assets-src/` e rod
 | P7 | **Foto da Tânia** | placeholder ilustrado | `public/images/confeiteira.jpg` |
 | P8 | **História da Tânia** (2–4 frases) | texto provisório marcado | `index.html` → seção `#sobre` |
 | P9 | **Depoimentos reais** (3, com nome e cidade, com autorização) | 3 exemplos fictícios | `index.html` → seção `#depoimentos` |
-| P10 | **Logo em vetor (SVG) ou PNG em alta** | logo extraído do PDF (500–1000px), vetorizado/limpo | `public/images/logo.svg` |
+| P10 | **Logo em vetor (SVG) ou PNG em alta** | resolvida para web com as variações raster 1000px do PDF de logos; SVG vetorial ainda ideal | `public/images/logo.*`, `logo-claro.*`, `logo-preloader.*` |
 | P11 | **Confirmação:** veganos tradicionais são sem glúten? | tag "sem glúten" **não** aplicada aos veganos | `src/data/cardapio.js` (campo `tags`) |
 | P12 | **Confirmação:** Mandala de Morango segue no cardápio atual? | exibido como "Sazonal — consultar disponibilidade" | `src/data/cardapio.js` |
 | P13 | Domínio/hospedagem e imagem de compartilhamento (Open Graph) | fora do escopo; OG usa foto do bolo de festa | `index.html` `<meta property="og:image">` |

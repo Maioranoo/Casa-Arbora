@@ -7,7 +7,9 @@
     <meta name="description" content="Bolos e doces sem açúcar refinado, Baby Friendly e veganos, feitos à mão sob encomenda no ABC Paulista. Peça pelo WhatsApp." />
     <meta name="theme-color" content="#FBF6EE" />
     <meta name="color-scheme" content="light" />
-    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/images/favicon.png" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <meta property="og:title" content="Casa Árbora — Bolos de verdade, doces por natureza" />
     <meta property="og:description" content="Bolos e doces Baby Friendly e veganos, feitos sob encomenda no ABC Paulista." />
     <meta property="og:image" content="/images/cardapio/festa-cacau-tamaras.jpg" /><!-- TODO(conteúdo) P13: trocar por URL absoluta quando houver domínio -->
@@ -34,8 +36,11 @@
 
   <header class="topo">
     <div class="container topo__linha">
-      <a class="topo__logo" href="#inicio" aria-label="Casa Árbora — início" data-pendente="logo em vetor (P10)">
-        <img src="/images/logo.png" alt="Casa Árbora" width="100" height="156">
+      <a class="topo__logo" href="#inicio" aria-label="Casa Árbora — início">
+        <picture>
+          <source srcset="/images/logo.webp" type="image/webp">
+          <img src="/images/logo.png" alt="Casa Árbora" width="339" height="120">
+        </picture>
       </a>
       <button class="topo__menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
         <svg class="ico-abrir" width="26" height="26"><use href="#i-menu"/></svg>
@@ -194,7 +199,10 @@
   <footer class="rodape">
     <svg class="rasgado rasgado--topo" aria-hidden="true"><use href="#rasgado"/></svg>
     <div class="container rodape__conteudo">
-      <img src="/images/logo-claro.png" alt="Casa Árbora" width="185" height="288" loading="lazy">
+      <picture class="rodape__logo">
+        <source srcset="/images/logo-claro.webp" type="image/webp">
+        <img src="/images/logo-claro.png" alt="Casa Árbora" width="274" height="96" loading="lazy">
+      </picture>
       <p class="manuscrita rodape__frase">Feito com muito carinho</p>
       <ul class="rodape__social">
         <li><a href="https://www.instagram.com/casaarbora/" target="_blank" rel="noopener" aria-label="Instagram @casaarbora"><svg width="24" height="24" aria-hidden="true"><use href="#i-instagram"/></svg></a></li>

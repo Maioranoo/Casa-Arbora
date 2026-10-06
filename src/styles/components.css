@@ -56,7 +56,6 @@
 .dev-pendente { position: absolute; top: 8px; left: 8px; z-index: 5; padding: 2px 8px; border: 2px dashed #D12; border-radius: 6px; background: #FFF4F4; color: #B00; font: 700 12px/1.4 system-ui, sans-serif; }
 [data-pendente] { position: relative; }
 /* Logo: etiqueta ao lado, para não cobrir a marca */
-.topo__logo > .dev-pendente { top: 50%; left: 100%; margin-left: 8px; transform: translateY(-50%); white-space: nowrap; }
 /* Texto (história, depoimentos): etiqueta no fluxo, acima do texto, para não cobrir as primeiras palavras */
 p > .dev-pendente, .container > .dev-pendente { position: static; display: block; width: fit-content; margin-bottom: 8px; }
 

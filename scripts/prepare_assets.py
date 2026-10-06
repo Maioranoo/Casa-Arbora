@@ -1,8 +1,9 @@
 """Extrai e prepara as imagens do site a partir dos PDFs em assets-src/.
-Uso: python scripts/prepare_assets.py   (requer: pip install pymupdf pillow)
+Uso: python scripts/prepare_assets.py   (requer: pip install pymupdf pillow numpy)
 """
 import io
 from pathlib import Path
+import numpy as np
 import pymupdf
 from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageOps
 
@@ -18,6 +19,23 @@ def imagens_da_pagina(pdf, pagina):
 SET = imagens_da_pagina("setembro.pdf", 0)   # 22 imagens (índices = p01_N)
 GPT = imagens_da_pagina("tratadas.pdf", 0)   # 19 imagens
 ANT = imagens_da_pagina("antigo.pdf", 6)     # página "Veganos" do PDF antigo
+
+def logos_da_pagina(pdf, pagina):
+    """Imagens RGBA da página, compondo cada uma com sua máscara suave (smask) do PDF."""
+    doc = pymupdf.open(SRC / pdf)
+    out = []
+    for x in doc[pagina].get_images(full=True):
+        pix = pymupdf.Pixmap(doc, x[0])
+        if x[1]:
+            pix = pymupdf.Pixmap(pix, pymupdf.Pixmap(doc, x[1]))
+        out.append(Image.open(io.BytesIO(pix.tobytes("png"))).convert("RGBA"))
+    return out
+
+# Variações raster (1000px) do PDF de logos, pág. 2: 0 = wordmark creme (transparente, 500px),
+# 1 = planta + wordmark terracota no amarelo, 2 = preto no branco, 6 = wordmark marrom no quadrado creme...
+LOGOS = logos_da_pagina("logos.pdf", 1)
+AMARELO_LOGO = (255, 203, 101)   # fundo da variação 1
+CREME_LOGO = (248, 246, 221)     # fundo da variação 6
 
 def quadrada(img, lado=800):
     return ImageOps.fit(img, (lado, lado), Image.LANCZOS, centering=(0.5, 0.5))
@@ -71,16 +89,62 @@ def selo(nome):
     # 192px = 2x do maior uso (96px em "Como escolher"); nas tags aparece a 20px
     salvar_png_alfa(circulo(img, cx, cy, r, 192), destino)
 
-def logo(img, cor, destino, corte=None, altura=None):
-    """Line-art escuro sobre branco → PNG transparente na cor dada (altura: ~3x a altura exibida)."""
-    g = ImageOps.grayscale(img)
-    if corte: g = g.crop(corte)
-    alpha = ImageOps.invert(g).point(lambda v: 0 if v < 40 else min(255, int(v * 1.4)))
-    bbox = alpha.getbbox(); alpha = alpha.crop(bbox)
-    out = Image.new("RGBA", alpha.size, cor + (0,)); out.putalpha(alpha)
-    out.thumbnail((600, altura or 600), Image.LANCZOS)
-    destino.parent.mkdir(parents=True, exist_ok=True); salvar_png_alfa(out, destino)
-    return out
+def chave(img, fundo, t0=18, t1=70):
+    """Remove uma cor de fundo sólida (color-key com borda suave), recupera a cor do primeiro plano e apara."""
+    a = np.asarray(img.convert("RGB")).astype(np.float32)
+    f = np.array(fundo, np.float32)
+    dist = np.sqrt(((a - f) ** 2).sum(-1))
+    alfa = np.clip((dist - t0) / (t1 - t0), 0, 1)
+    cor = np.clip((a - (1 - alfa[..., None]) * f) / np.maximum(alfa, 1e-3)[..., None], 0, 255)
+    out = Image.fromarray(np.dstack([cor, alfa * 255]).astype(np.uint8), "RGBA")
+    return out.crop(out.getchannel("A").getbbox())
+
+def para_altura(img, altura):
+    return img.resize((round(img.width * altura / img.height), altura), Image.LANCZOS)
+
+def salvar_logo(img, nome):
+    """PNG com alfa quantizado (fallback) + WebP lossless da mesma paleta (menor que o PNG e sem artefatos)."""
+    salvar_png_alfa(img, OUT / f"{nome}.png")
+    Image.open(OUT / f"{nome}.png").convert("RGBA").save(OUT / f"{nome}.webp", "WEBP", lossless=True, method=6)
+
+def icones():
+    """Favicons e apple-touch-icon: só a planta da variação 1, centrada no amarelo."""
+    v1 = LOGOS[1].convert("RGB")
+    a = np.asarray(v1).astype(np.float32)
+    dist = np.sqrt(((a - np.array(AMARELO_LOGO, np.float32)) ** 2).sum(-1))
+    traco = Image.fromarray((np.clip((dist - 30) / 60, 0, 1) * 255).astype(np.uint8), "L")
+    linhas = (np.asarray(traco) > 128).sum(1)
+    corte = next(y for y in range(500, v1.height) if linhas[y] == 0)  # faixa vazia entre o vaso e o wordmark
+    planta = traco.crop((0, 0, v1.width, corte))
+    planta = planta.crop(planta.getbbox())
+    solidos = a[:corte][np.asarray(traco)[:corte] > 250]
+    cor = tuple(int(c) for c in np.median(solidos, 0))  # terracota da linha
+    def icone(lado, engrossa, margem, cantos=True):
+        # engrossa: MaxFilter na máscara em 1000px antes de reduzir (a linha some em 32px sem isso)
+        m = planta.filter(ImageFilter.MaxFilter(engrossa)) if engrossa > 1 else planta
+        tela_lado = round(max(m.size) / (1 - 2 * margem))
+        tela = Image.new("L", (tela_lado, tela_lado), 0)
+        tela.paste(m, ((tela_lado - m.width) // 2, (tela_lado - m.height) // 2))
+        img = Image.new("RGBA", (lado, lado), AMARELO_LOGO + (255,))
+        img.paste(Image.new("RGBA", (lado, lado), cor + (255,)), (0, 0), tela.resize((lado, lado), Image.LANCZOS))
+        if cantos:  # quadrado com cantos arredondados, transparente fora
+            k = 4
+            r = Image.new("L", (lado * k, lado * k), 0)
+            ImageDraw.Draw(r).rounded_rectangle((0, 0, lado * k - 1, lado * k - 1), radius=round(lado * k * 0.22), fill=255)
+            img.putalpha(r.resize((lado, lado), Image.LANCZOS))
+        return img
+    icone(32, 19, 0.10).save(OUT / "favicon-32.png", optimize=True)
+    icone(64, 13, 0.10).save(OUT / "favicon.png", optimize=True)
+    icone(180, 5, 0.16, cantos=False).convert("RGB").save(OUT / "apple-touch-icon.png", optimize=True)  # iOS arredonda
+
+def logos():
+    # Topo: wordmark marrom (variação 6) sem o quadrado creme; exibido a 40px de altura → 3x
+    salvar_logo(para_altura(chave(LOGOS[6], CREME_LOGO), 120), "logo")
+    # Rodapé: wordmark creme (variação 0, já transparente), aparado; exibido a 48px → 2x (tamanho nativo)
+    v0 = LOGOS[0]
+    salvar_logo(v0.crop(v0.getchannel("A").getbbox()), "logo-claro")
+    # Preloader: planta + wordmark terracota (variação 1) sem o amarelo; exibido a 240px de altura → 2x
+    salvar_logo(para_altura(chave(LOGOS[1], AMARELO_LOGO, 30, 90), 480), "logo-preloader")
 
 # ---- Fotos do cardápio: id -> imagem ----
 CARDAPIO = {
@@ -146,15 +210,9 @@ def main():
     bolo = limpar_transparentes(circulo(b, BOLO_CX, BOLO_CY, BOLO_R, 2 * BOLO_R))
     bolo.save(OUT / "bolo-topo.webp", "WEBP", quality=78, method=6, exact=False)
     salvar_png_alfa(bolo, OUT / "bolo-topo.png")
-    # Logo real (TODO(conteúdo) P10: substituir por vetor oficial). Exibido a 52px (topo) e 96px (rodapé).
-    logo(GPT[4], (31, 45, 74), OUT / "logo.png", altura=156)
-    logo(GPT[4], (251, 246, 238), OUT / "logo-claro.png", altura=288)
-    w, h = GPT[4].size
-    fav = logo(GPT[4], (31, 45, 74), OUT / "favicon.png", corte=(0, 0, w, int(h * 0.62)))
-    lado = max(fav.size)  # completa até quadrado (sem distorcer) antes de reduzir
-    quadro = Image.new("RGBA", (lado, lado), (31, 45, 74, 0))
-    quadro.paste(fav, ((lado - fav.width) // 2, (lado - fav.height) // 2))
-    salvar_png_alfa(quadro.resize((64, 64), Image.LANCZOS), OUT / "favicon.png")
+    # Logos e ícones a partir do PDF de logos (P10: raster 1000px; SVG vetorial ainda ideal)
+    logos()
+    icones()
     # Decorações
     salvar_jpg(quadrada(SET[18], 700), OUT / "deco" / "frutas-folha.jpg")
     placeholder_confeiteira()

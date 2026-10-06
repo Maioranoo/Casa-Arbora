@@ -211,7 +211,7 @@ Itens marcados assim aparecem em três lugares: (a) nesta tabela; (b) no código
 | Docinhos Cacau & Avelã / Beijinho / Cajuzinho | `set p01_12` / `set p01_14` / `set p01_13` | setembro |
 | Muffin Cenoura | `set p01_17` | setembro |
 | Granola | `set p01_15` (+ embalagem `set p01_16`) | setembro |
-| Logo real (vaso com folhas) | `gpt p01_4` → SVG/PNG no header e favicon | fotos tratadas |
+| Logos (wordmark no header e rodapé; planta + wordmark no preloader; planta nos ícones) | `logos.pdf` pág. 2, variações 6 / 0 / 1 (ajustes v2) | logos |
 | Faixa "Como encomendar" / decoração | `set p01_18`, `gpt p01_17` | ambos |
 
 ### Pendentes
@@ -226,7 +226,7 @@ Itens marcados assim aparecem em três lugares: (a) nesta tabela; (b) no código
 | P7 | **Foto da Tânia** | placeholder ilustrado | `public/images/confeiteira.jpg` |
 | P8 | **História da Tânia** (2–4 frases) | texto provisório marcado | `index.html` → seção `#sobre` |
 | P9 | **Depoimentos reais** (3, com nome e cidade, com autorização) | 3 exemplos fictícios | `index.html` → seção `#depoimentos` |
-| P10 | **Logo em vetor (SVG) ou PNG em alta** | logo extraído do PDF (500–1000px), vetorizado/limpo | `public/images/logo.svg` |
+| P10 | **Logo em vetor (SVG) ou PNG em alta** | resolvida para web com as variações raster 1000px do PDF de logos; SVG vetorial ainda ideal | `public/images/logo.*`, `logo-claro.*`, `logo-preloader.*` |
 | P11 | **Confirmação:** veganos tradicionais são sem glúten? | tag "sem glúten" **não** aplicada aos veganos | `src/data/cardapio.js` (campo `tags`) |
 | P12 | **Confirmação:** Mandala de Morango segue no cardápio atual? | exibido como "Sazonal — consultar disponibilidade" | `src/data/cardapio.js` |
 | P13 | Domínio/hospedagem e imagem de compartilhamento (Open Graph) | fora do escopo; OG usa foto do bolo de festa | `index.html` `<meta property="og:image">` |
