@@ -1,4 +1,6 @@
 /* Header */
+/* backdrop-filter torna o .topo o bloco de contenção do .topo__nav (position: fixed) no mobile: funciona porque o
+   header é sticky em top: 0, então "fixo ao header" = fixo logo abaixo dele. */
 .topo { position: sticky; top: 0; z-index: 50; background: rgb(251 246 238 / 0.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--c-bege); }
 .topo__linha { display: flex; align-items: center; justify-content: space-between; height: var(--header-h); }
 .topo__logo { display: inline-flex; align-items: center; min-width: var(--toque); min-height: var(--toque); }
@@ -6,30 +8,37 @@
 .topo__menu-btn { display: inline-grid; place-items: center; width: var(--toque); height: var(--toque); border: 0; background: none; border-radius: var(--r-sm); color: var(--c-marinho); cursor: pointer; }
 .topo__menu-btn .ico-fechar, .topo__menu-btn[aria-expanded="true"] .ico-abrir { display: none; }
 .topo__menu-btn[aria-expanded="true"] .ico-fechar { display: block; }
-.topo__nav { position: fixed; inset: var(--header-h) 0 auto 0; background: var(--c-creme); padding: var(--sp-4) var(--gutter) var(--sp-6); box-shadow: var(--sh-lg); display: grid; gap: var(--sp-4); visibility: hidden; opacity: 0; transform: translateY(-8px); transition: opacity var(--dur-rapida) var(--ease-saida), transform var(--dur-rapida) var(--ease-saida), visibility 0s linear var(--dur-rapida); }
+.topo__nav { position: fixed; inset: var(--header-h) 0 auto 0; max-height: calc(100svh - var(--header-h)); overflow-y: auto; overscroll-behavior: contain; background: var(--c-creme); padding: var(--sp-4) var(--gutter) var(--sp-6); box-shadow: var(--sh-lg); display: grid; gap: var(--sp-4); visibility: hidden; opacity: 0; transform: translateY(-8px); transition: opacity var(--dur-rapida) var(--ease-saida), transform var(--dur-rapida) var(--ease-saida), visibility 0s linear var(--dur-rapida); }
 .topo__nav.is-aberto { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
 @media (prefers-reduced-motion: reduce) { .topo__nav { transform: none; } }
 .topo__nav ul { list-style: none; margin: 0; padding: 0; }
 .topo__nav ul a { display: flex; align-items: center; min-height: 52px; font-family: var(--f-titulo); font-size: var(--fs-lg); font-weight: 600; color: var(--c-marinho); text-decoration: none; border-bottom: 1px solid var(--c-bege); }
 
 /* Hero */
-.hero { position: relative; min-height: calc(100svh - var(--header-h)); padding-top: var(--sp-6); padding-bottom: 94vw; overflow-x: clip; }
+/* Celular em pé: o bolo fica abaixo do texto. Tamanho e espaçamentos dependem também da ALTURA da tela (svh), para o
+   bolo aparecer na primeira dobra mesmo em telas baixas (360x640, 375x667) sem cobrir texto, botões ou selos.
+   --cake-tam = lado do bolo; a reserva embaixo do hero = folga + 93% do bolo (os outros 7% invadem a faixa seguinte). */
+.hero { --cake-tam: min(84vw, 50svh); --cake-folga: clamp(var(--sp-2), 2svh, var(--sp-5)); position: relative; min-height: calc(100svh - var(--header-h)); padding-top: clamp(var(--sp-3), 3svh - 4px, var(--sp-6)); padding-bottom: calc(var(--cake-folga) + var(--cake-tam) * 0.93); overflow-x: clip; }
 .hero__conteudo { position: relative; z-index: 2; }
 .hero__kicker { margin-bottom: var(--sp-2); }
 .hero__titulo { font-size: var(--fs-3xl); max-width: 12ch; }
-.hero__sub { margin-top: var(--sp-4); font-size: var(--fs-lg); max-width: 34ch; }
-.hero__acoes { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3); margin-top: var(--sp-5); }
-.selos-hero { list-style: none; padding: 0; margin: var(--sp-6) 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
+.hero__sub { margin-top: clamp(var(--sp-2), 2svh, var(--sp-4)); font-size: var(--fs-lg); max-width: 34ch; }
+.hero__acoes { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3); margin-top: clamp(var(--sp-3), 2.5svh, var(--sp-5)); }
+.hero__acoes .btn--grande { padding-inline: clamp(var(--sp-4), 9vw - 16px, var(--sp-6)); } /* botão + link numa linha só já em 360px (economiza uma linha na dobra) */
+.selos-hero { list-style: none; padding: 0; margin: clamp(var(--sp-4), 3.5svh, var(--sp-6)) 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
 .selos-hero li { display: grid; justify-items: start; align-content: start; gap: var(--sp-1); font-size: var(--fs-xs); font-weight: 700; color: var(--c-marinho); line-height: 1.25; }
 .selos-hero svg { color: var(--c-oliva); }
 .deco--folha-1 { top: 8%; right: -22px; transform: rotate(40deg); }
 .deco--folha-2 { display: none; top: 46%; left: -18px; transform: rotate(-120deg); }
 
 /* Bolo: estático por padrão (sem JS / reduced motion), fixo quando animado */
-.cake-layer { position: absolute; z-index: 0; pointer-events: none; right: -18vw; bottom: -6vw; width: 84vw; aspect-ratio: 1; }
+.cake-layer { position: absolute; z-index: 0; pointer-events: none; right: calc(var(--cake-tam) * -0.2); bottom: calc(var(--cake-tam) * -0.07); width: var(--cake-tam); aspect-ratio: 1; }
 .cake-layer.is-fixed { position: fixed; top: var(--cake-top); left: var(--cake-left); width: var(--cake-size); right: auto; bottom: auto; }
-.cake { width: 100%; height: 100%; filter: drop-shadow(0 18px 30px rgb(74 52 30 / 0.25)); }
-.cake-layer.is-fixed .cake { will-change: transform, opacity; }
+.cake-layer > picture, .cake-sombra { position: absolute; inset: 0; }
+.cake { width: 100%; height: 100%; }
+/* Sombra: círculo irmão que acompanha escala/posição/opacidade do bolo mas não gira (sem filter em elemento animado) */
+.cake-sombra { border-radius: 50%; box-shadow: 0 18px 30px rgb(74 52 30 / 0.25); }
+.cake-layer.is-fixed .cake, .cake-layer.is-fixed .cake-sombra { will-change: transform, opacity; }
 
 /* Como escolher (faixa sálvia opaca, acima do bolo) */
 .faixa { z-index: 1; background: var(--c-salvia-claro); color: var(--c-texto); margin-block: 18px; }
@@ -94,9 +103,9 @@
 
 /* ---------- Tablet ---------- */
 @media (min-width: 768px) {
-  .hero { padding-bottom: 66vw; }
+  .hero { --cake-tam: min(60vw, 45svh); }
   .deco--folha-2 { display: block; top: 64%; } /* 768-1099: abaixo dos selos do hero, à esquerda do bolo */
-  .cake-layer { width: 60vw; right: -8vw; bottom: -4vw; }
+  .cake-layer { right: calc(var(--cake-tam) * -0.13); }
   .selos-lista { grid-template-columns: repeat(3, 1fr); }
   .selo-item { grid-template-columns: 1fr; justify-items: center; text-align: center; }
   .selo-item img { width: 96px; height: 96px; }
@@ -107,6 +116,19 @@
   .encomendar__marque { text-align: left; } /* botão deixa de ser 100%: alinha com ele */
 }
 
+/* ---------- Celular/tablet deitado (< 1100px) ----------
+   Única query de orientação do projeto (necessária para o C1): numa tela deitada e baixa (ex.: 844x390) não há altura
+   para o bolo abaixo do texto, então ele vai para a direita do texto, como no desktop. A largura sozinha não distingue
+   844x390 (deitado) de 768x1024 (em pé). O bloco desktop abaixo sobrescreve tudo a partir de 1100px. */
+@media (orientation: landscape) {
+  .hero { --cake-tam: min(40vw, 62svh); padding-bottom: var(--sp-6); }
+  .hero__acoes, .selos-hero { max-width: min(30rem, 56vw); }
+  .hero__titulo { max-width: min(12ch, 56vw); }
+  .hero__sub { max-width: min(34ch, 56vw); }
+  .cake-layer { top: clamp(var(--sp-3), 4svh, var(--sp-6)); right: var(--gutter); bottom: auto; }
+  .deco--folha-2 { display: none; }
+}
+
 /* ---------- Desktop ---------- */
 @media (min-width: 1100px) {
   .topo__menu-btn { display: none; }
@@ -114,10 +136,10 @@
   .topo__nav ul { display: flex; gap: var(--sp-5); }
   .topo__nav ul a { min-height: var(--toque); min-width: var(--toque); justify-content: center; border: 0; font-size: var(--fs-base); }
   @media (hover: hover) { .topo__nav ul a:hover { color: var(--c-terracota); } }
-  .hero { display: flex; align-items: center; padding-bottom: var(--sp-9); min-height: min(calc(100svh - var(--header-h)), 820px); }
+  .hero { display: flex; align-items: center; padding-top: var(--sp-6); padding-bottom: var(--sp-9); min-height: min(calc(100svh - var(--header-h)), 820px); }
   .hero__conteudo { width: min(100% - 2 * var(--gutter), var(--container)); }
-  .hero__titulo, .hero__sub, .selos-hero { max-width: 560px; }
-  .cake-layer { width: min(46vw, 640px); right: max(2vw, calc((100vw - var(--container)) / 2 - 40px)); top: calc(var(--header-h) + 4vh); bottom: auto; }
+  .hero__titulo, .hero__sub, .hero__acoes, .selos-hero { max-width: 560px; }
+  .cake-layer { --cake-tam: min(46vw, 640px); width: var(--cake-tam); right: max(2vw, calc((100vw - var(--container)) / 2 - 40px)); top: calc(var(--header-h) + 4vh); bottom: auto; }
   .deco--folha-2 { top: 46%; }
   .grade-produtos { grid-template-columns: repeat(3, 1fr); }
   .depoimentos__lista { grid-template-columns: repeat(3, 1fr); }
