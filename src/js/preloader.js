@@ -5,14 +5,16 @@ gsap.registerPlugin(ScrollTrigger)
 
 const esperar = (ms) => new Promise((r) => setTimeout(r, ms))
 const SAIDA_MS = 400 // fallback se o transitionend não vier (a transição de opacidade é de 300ms)
+const INERTES = '.topo, #conteudo, .rodape' // ficam inertes atrás do preloader (script inline no fim do index.html)
 
 // Tela de carregamento: sai quando fontes + bolo do hero estão prontos (o cardápio já foi renderizado,
 // pois esta função roda depois do initCardapio), ou no maxWait — o que vier primeiro.
 export function initPreloader({ minDelay = 0, maxWait = 3000 } = {}) {
+  clearTimeout(window.__casaPreloaderTimer) // a rede de segurança inline do index.html não é mais necessária
   const html = document.documentElement
   const el = document.querySelector('.preloader')
   if (!el) {
-    html.classList.remove('carregando')
+    liberar(html)
     return Promise.resolve()
   }
   const cake = document.querySelector('img.cake')
@@ -36,6 +38,11 @@ function sair(el, html) {
     el.addEventListener('transitionend', (e) => { if (e.target === el) fim() })
     setTimeout(fim, SAIDA_MS)
     el.classList.add('preloader--saindo')
-    html.classList.remove('carregando')
+    liberar(html)
   })
+}
+
+function liberar(html) {
+  html.classList.remove('carregando')
+  document.querySelectorAll(INERTES).forEach((n) => n.removeAttribute('inert'))
 }

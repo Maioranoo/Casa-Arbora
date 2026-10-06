@@ -18,8 +18,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&family=Outfit:wght@600;800&display=swap" rel="stylesheet" />
     <!-- Tela de carregamento: estilos inline para pintar antes de qualquer CSS externo (cores fixas, sem tokens) -->
     <style>
-      html.carregando { overflow: hidden; }
-      .preloader { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; background: #FBF6EE; opacity: 1; transition: opacity 300ms ease; }
+      /* Rede de segurança só-CSS (caso nenhum JS rode, ex.: script inline bloqueado): aos 6s o preloader some e o scroll volta */
+      html.carregando { overflow: hidden; animation: preloader-libera-scroll 0s 6s forwards; }
+      @keyframes preloader-libera-scroll { to { overflow: visible; } }
+      .preloader { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; background: #FBF6EE; opacity: 1; transition: opacity 300ms ease; animation: preloader-some 300ms ease 6s forwards; }
+      @keyframes preloader-some { to { opacity: 0; visibility: hidden; pointer-events: none; } }
       .preloader--saindo { opacity: 0; pointer-events: none; }
       .preloader picture { display: block; }
       .preloader__logo { display: block; height: min(240px, 36vh); width: auto; }
@@ -28,6 +31,18 @@
       @media (prefers-reduced-motion: reduce) { .preloader__bolo { animation: none; } }
     </style>
     <noscript><style>.preloader { display: none; } html.carregando { overflow: auto; }</style></noscript>
+    <script data-preloader="seguranca">
+      // Rede de segurança: se o JS principal falhar (erro, download bloqueado, navegador antigo), libera a página em 6s.
+      // O initPreloader (src/js/preloader.js) cancela este timer assim que começa.
+      window.__casaPreloaderTimer = setTimeout(function () {
+        var d = document
+        d.documentElement.classList.remove('carregando')
+        var p = d.querySelector('.preloader')
+        if (p && p.parentNode) p.parentNode.removeChild(p)
+        var els = d.querySelectorAll('.topo, #conteudo, .rodape')
+        for (var i = 0; i < els.length; i++) els[i].removeAttribute('inert')
+      }, 6000)
+    </script>
     <link rel="stylesheet" href="/src/styles/tokens.css" />
     <link rel="stylesheet" href="/src/styles/base.css" />
     <link rel="stylesheet" href="/src/styles/components.css" />
@@ -239,6 +254,13 @@
     </div>
   </footer>
 
+  <script data-preloader="inert">
+    // Enquanto o preloader cobre a tela, o conteúdo atrás fica inerte (sem foco/leitor de tela). Sem JS, não roda.
+    (function () {
+      var els = document.querySelectorAll('.topo, #conteudo, .rodape')
+      for (var i = 0; i < els.length; i++) els[i].setAttribute('inert', '')
+    })()
+  </script>
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>

@@ -102,6 +102,25 @@ describe('initPreloader', () => {
     expect(document.querySelector('.preloader').classList.contains('preloader--saindo')).toBe(true)
   })
 
+  it('ao sair, tira o inert de topo, conteúdo e rodapé', async () => {
+    document.body.insertAdjacentHTML('beforeend', '<header class="topo" inert></header><main id="conteudo" inert></main><footer class="rodape" inert></footer>')
+    fontes.resolve()
+    vi.useFakeTimers()
+    initPreloader()
+    await vi.advanceTimersByTimeAsync(0)
+    for (const sel of ['.topo', '#conteudo', '.rodape']) expect(document.querySelector(sel).hasAttribute('inert')).toBe(false)
+  })
+
+  it('cancela a rede de segurança do index.html ao iniciar', () => {
+    vi.useFakeTimers()
+    const seguranca = vi.fn()
+    window.__casaPreloaderTimer = setTimeout(seguranca, 6000)
+    initPreloader({ maxWait: 60000 })
+    vi.advanceTimersByTime(7000)
+    expect(seguranca).not.toHaveBeenCalled()
+    delete window.__casaPreloaderTimer
+  })
+
   it('sem o elemento: só tira a classe carregando e resolve', async () => {
     document.querySelector('.preloader').remove()
     await initPreloader()

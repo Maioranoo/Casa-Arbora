@@ -140,7 +140,7 @@ def icones():
 def logos():
     # Topo: wordmark marrom (variação 6) sem o quadrado creme; exibido a 40px de altura → 3x
     salvar_logo(para_altura(chave(LOGOS[6], CREME_LOGO), 120), "logo")
-    # Rodapé: wordmark creme (variação 0, já transparente), aparado; exibido a 48px → 2x (tamanho nativo)
+    # Rodapé: wordmark creme (variação 0, já transparente), aparado; exibido a 56px de altura (~1.7x; tamanho nativo de 96px)
     v0 = LOGOS[0]
     salvar_logo(v0.crop(v0.getchannel("A").getbbox()), "logo-claro")
     # Preloader: planta + wordmark terracota (variação 1) sem o amarelo; exibido a 240px de altura → 2x
