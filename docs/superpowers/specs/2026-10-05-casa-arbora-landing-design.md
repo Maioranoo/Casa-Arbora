@@ -34,7 +34,6 @@ public/images/
   bolo-topo.png            # bolo real visto de cima, recortado em círculo, fundo transparente (animação)
   cardapio/*.jpg           # fotos reais, uma por item (nomes = id do item)
   selos/baby-friendly.png, sem-gluten.png, vegano.png   # selos com fundo transparente
-  confeiteira.jpg          # placeholder ilustrado (trocar pela foto da Tânia)
   deco/*                   # folhas e ingredientes decorativos
 src/
   config.js                # marca, WhatsApp, Instagram, mensagens prontas
@@ -65,11 +64,11 @@ Definido na Etapa 1 com a skill ui-ux-pro-max e registrado em `tokens.css`. Part
 
 ## 5. Seções (ordem da página)
 
-1. **Header** — logo "Casa Árbora" com folha; fixo e compacto. Mobile: botão hambúrguer (`aria-expanded`, `aria-controls`, fecha com Esc, clique em link ou fora; trava o scroll do body enquanto aberto). Desktop: links inline + botão "Encomendar". Links: Cardápio, Ingredientes, Sobre, Como encomendar.
+1. **Header** — logo "Casa Árbora" com folha; fixo e compacto. Mobile: botão hambúrguer (`aria-expanded`, `aria-controls`, fecha com Esc, clique em link ou fora; trava o scroll do body enquanto aberto). Desktop: links inline + botão "Encomendar". Links: Cardápio, Ingredientes, Como encomendar.
 2. **Hero** — frase manuscrita "Feito à mão, sem açúcar refinado"; título "Bolos de verdade, doces por natureza"; subtítulo "Bolos e doces Baby Friendly e veganos, adoçados com frutas frescas e secas. Feitos sob encomenda no ABC Paulista."; botão "Ver cardápio" (`#cardapio`) e link secundário "Fazer encomenda" (`#encomendar`); 3 selos com ícone: Sem açúcar refinado · Ingredientes naturais · Feito à mão. Espaço reservado para o bolo abaixo do conteúdo no mobile e à direita no desktop.
 3. **Como escolher** (faixa sálvia com bordas de papel rasgado) — título "Para todo mundo comer junto"; os 3 selos-imagem com legenda curta:
    - **Baby Friendly** — a partir de 9 meses. Sem açúcar adicionado, sem adoçantes, sem polióis, sem glúten, sem leite, sem lactose, sem caseína e sem ingredientes de origem animal. Adoçado com frutas frescas e secas.
-   - **Sem glúten** — toda a linha Baby Friendly e a granola.
+   - **Sem glúten** — toda a linha Baby Friendly, os bolos veganos e a granola.
    - **100% Vegano** — sem ingredientes de origem animal. A linha vegana tradicional é adoçada com açúcar demerara orgânico.
    - Nota: "Tem alergia, intolerância ou galactosemia? Conte antes de encomendar — avaliamos preparo e risco de contaminação cruzada. Galactosemia: somente sob anamnese prévia."
 4. **Cardápio** (`#cardapio`)
@@ -79,10 +78,9 @@ Definido na Etapa 1 com a skill ui-ux-pro-max e registrado em `tokens.css`. Part
    - Layout: 1 coluna no mobile, 2 no tablet, 3 no desktop.
    - Fallback `<noscript>`: texto com link para o WhatsApp.
 5. **Ingredientes** — estilo "What's Inside": 8 ícones SVG ilustrados com legenda (banana, tâmara, cacau, frutas vermelhas, limão siciliano, coco, castanhas, maçã). Grade 4×2 no mobile, linha única no desktop.
-6. **Sobre a confeiteira** — "Oi, eu sou a Tânia": foto arredondada (placeholder), parágrafo curto da história (placeholder marcado), assinatura manuscrita "Conte comigo! — Tânia".
-7. **Depoimentos** — 3 cards (aspas, texto, nome, cidade do ABC). Empilhados no mobile (sem carrossel). Exemplos fictícios marcados com comentário `<!-- TROCAR -->`.
-8. **Como encomendar** (`#encomendar`) — 4 passos: (1) escolha no cardápio; (2) mande no WhatsApp a data, nº de convidados, restrições e sabor — com pelo menos 5 dias de antecedência; (3) o pagamento antecipado confirma (Pix ou cartão); (4) entrega ou retirada a combinar (frete sob consulta). Botão grande "Pedir pelo WhatsApp" (mensagem genérica com o roteiro). Linha final: "Ao postar, marque @casaarbora 💛".
-9. **Rodapé** — marinho, borda rasgada no topo, frase manuscrita "Feito com muito carinho", ícones Instagram e WhatsApp, "ABC Paulista - SP", copyright.
+6. **Depoimentos** — 3 cards (aspas, texto, nome, cidade do ABC). Empilhados no mobile (sem carrossel). Exemplos fictícios marcados com comentário `<!-- TROCAR -->`.
+7. **Como encomendar** (`#encomendar`) — 4 passos: (1) escolha no cardápio; (2) mande no WhatsApp a data, nº de convidados, restrições e sabor — com pelo menos 5 dias de antecedência; (3) o pagamento antecipado confirma (Pix ou cartão); (4) entrega ou retirada a combinar (frete sob consulta). Botão grande "Pedir pelo WhatsApp" (mensagem genérica com o roteiro). Linha final: "Ao postar, marque @casaarbora 💛".
+8. **Rodapé** — marinho, borda rasgada no topo, frase manuscrita "Feito com muito carinho", ícones Instagram e WhatsApp, "ABC Paulista - SP", copyright.
 
 Decorações (folhas, castanhas, frutas) ficam absolutas nas bordas das seções, com `overflow-x: clip` nas seções para nunca gerar scroll horizontal.
 
@@ -120,21 +118,18 @@ Conteúdo:
   - Banana & Maçã — massa de banana com pedaços de maçã; decorado com rodelas de banana, passas, aveia e semente de abóbora; finalizado com leite de coco em pó.
   - Cacau & Tâmaras — massa de cacau 100% e tâmaras; gotas de chocolate Baby Friendly e physalis.
   - Pera & Amêndoas — massa de pera e tâmaras; decorado com peras e amêndoas laminadas; leite de coco em pó.
-  - Maçã, Baunilha & Nozes — massa de maçã e baunilha; lascas de maçã e nozes picadas; leite de coco em pó e canela.
   - Cenoura, Damasco & Cacau (com ganache de chocolate 50% Baby Friendly) — massa de cenoura e damascos; ganache e physalis. P R$ 180 · M R$ 290.
   - Mandala de Morango (tag **Sazonal — consultar disponibilidade**) — bolo de cacau 100%, tâmaras e frutas secas, coberto com ganache de chocolate 50% e decorado com morangos frescos. P 8–12 fatias · 850 g R$ 190; M 15–17 fatias · 1,5 kg R$ 280.
 - **Festa** (Baby Friendly, duas camadas) — P 12–14 fatias · 1,2 kg R$ 280; M 22–24 fatias · 2,2 kg R$ 388. Nota: "Transporte com cuidado para preservar estrutura, cobertura e decoração."
   - Limão Siciliano & Mirtilos — recheio de creme de limão; cobertura de creme de limão, mirtilos frescos, physalis e raspas de limão.
   - Cacau & Tâmaras — massa de cacau 100%, tâmaras e frutas secas; recheio de frutas vermelhas e creme de cacau; cobertura de creme de cacau com frutas frescas.
   - Damasco & Banana — massa de damascos e banana; recheio de frutas vermelhas com creme de laranja e damasco; cobertura de creme de laranja, damascos e frutas vermelhas frescas.
-- **Veganos** (tag VG; adoçados com açúcar demerara orgânico; sem corantes ou conservantes) — P 7–9 fatias · 800 g R$ 120; M 12–14 fatias · 1,2 kg R$ 160. Um card por sabor: Chocolatudo, Laranja, Limão Siciliano, Chocolate & Banana, Cenoura & Tâmara, Baunilha. Descrição padrão: "Bolo vegano de {sabor}, adoçado com açúcar demerara orgânico." (sem inventar ingredientes; marcado para a Tânia completar).
+- **Veganos** (tag VG e Sem glúten; adoçados com açúcar demerara orgânico; sem corantes ou conservantes) — P 7–9 fatias · 800 g R$ 120; M 12–14 fatias · 1,2 kg R$ 160. Um card por sabor: Chocolatudo, Limão Siciliano, Chocolate & Banana, Cenoura & Tâmara, Baunilha. Descrição padrão: "Bolo vegano de {sabor}, adoçado com açúcar demerara orgânico." (sem inventar ingredientes; a linha será refeita pela Tânia no cardápio novo).
 - **Docinhos** (BF; forminhas de papel nº 5) — caixa com 15 do mesmo sabor R$ 90 (R$ 6 cada):
   - Cacau & Avelã — avelãs, tâmaras, frutas secas, cacau 100%, baunilha e flor de sal.
   - Beijinho — damasco, frutas secas, coco e laranja.
   - Cajuzinho — castanha de caju, pasta de amendoim, frutas secas, uva passa e baunilha.
 - **Muffins** (BF; "Ótimo para o lanche da escola. Pode congelar.") — caixa com 24 do mesmo sabor R$ 120:
-  - Banana — massa de banana com recheio de pedacinhos de banana.
-  - Cacau — massa de cacau com recheio de gotas de chocolate Baby Friendly.
   - Cenoura — massa de damasco e cenoura com recheio de gotas de chocolate Baby Friendly.
 - **Granola** (VG, sem glúten) — Granola Artesanal: aveia, sementes de girassol e abóbora, fios de coco, passas branca e preta, nibs de cacau, gergelim, amêndoas, castanha do Pará, óleo e açúcar de coco, canela e sal rosa. Pacote médio 300 g R$ 40; grande 600 g R$ 75.
 - **Kits** (tag Sob consulta; `preco: null`; botão "Consultar"):
@@ -172,7 +167,7 @@ Conteúdo:
 
 - **Cardápio:** fotos reais dos PDFs, recortadas/otimizadas (~800px no maior lado, JPEG ~80), uma por item, nome = id do item. Itens sem foto própria usam a melhor foto da categoria (ex.: veganos sem foto, muffins por sabor, kits); o mapeamento item → foto é revisado visualmente numa folha de contato antes de fechar.
 - **Selos:** `2.jpg`, `3.jpg`, `4.jpg` enviados → PNG com fundo transparente (recorte circular).
-- **Placeholders:** a foto da confeiteira é um placeholder ilustrado (não usamos foto de terceiros que pareça ser a Tânia); decorações são SVG próprios e recortes das fotos reais. Marcados no README.
+- **Placeholders:** decorações são SVG próprios e recortes das fotos reais. Marcados no README.
 - `width`/`height` explícitos, `loading="lazy"` fora do hero, `alt` descritivo.
 - README com a tabela "o que trocar e onde".
 
@@ -217,19 +212,13 @@ Itens marcados assim aparecem em três lugares: (a) nesta tabela; (b) no código
 ### Pendentes
 | # | O quê | Situação no site até chegar | Onde trocar |
 |---|---|---|---|
-| P1 | **Foto: Clássico Maçã, Baunilha & Nozes** | usa foto de Pera & Amêndoas + etiqueta dev | `public/images/cardapio/classico-maca-baunilha-nozes.jpg` |
-| P2 | **Foto: Muffin Banana** | usa foto do muffin de cenoura | `public/images/cardapio/muffin-banana.jpg` |
-| P3 | **Foto: Muffin Cacau** | usa foto do muffin de cenoura | `public/images/cardapio/muffin-cacau.jpg` |
-| P4 | **Fotos: Kits** (Primeira Festinha, Escolinha, Festa) | composição com fotos de bolo + docinhos/muffins | `public/images/cardapio/kit-*.jpg` |
-| P5 | **Foto em boa resolução: Veganos Laranja e Chocolate & Banana** | usa a foto do PDF antigo (~550px, aceitável no celular) | `public/images/cardapio/vegano-laranja.jpg`, `vegano-chocolate-banana.jpg` |
-| P6 | **Descrição dos 6 bolos veganos** (ingredientes/decoração) | texto padrão "Bolo vegano de {sabor}, adoçado com açúcar demerara orgânico." | `src/data/cardapio.js` |
-| P7 | **Foto da Tânia** | placeholder ilustrado | `public/images/confeiteira.jpg` |
-| P8 | **História da Tânia** (2–4 frases) | texto provisório marcado | `index.html` → seção `#sobre` |
+| P4 | **Kits:** a Tânia vai calcular os preços e montar as fotos | sob consulta, com composição provisória de fotos | `src/data/cardapio.js`, `public/images/cardapio/kit-*.jpg` |
+| P5 | **Foto em boa resolução: Vegano Chocolate & Banana** | usa a foto do PDF antigo (~550px, aceitável no celular) | `public/images/cardapio/vegano-chocolate-banana.jpg` |
+| P6 | **Linha vegana será refeita pela Tânia no cardápio novo** (sabores, descrições e fotos) | texto padrão "Bolo vegano de {sabor}, adoçado com açúcar demerara orgânico." | `src/data/cardapio.js` |
 | P9 | **Depoimentos reais** (3, com nome e cidade, com autorização) | 3 exemplos fictícios | `index.html` → seção `#depoimentos` |
 | P10 | **Logo em vetor (SVG) ou PNG em alta** | resolvida para web com as variações raster 1000px do PDF de logos; SVG vetorial ainda ideal | `public/images/logo.*`, `logo-claro.*`, `logo-preloader.*` |
-| P11 | **Confirmação:** veganos tradicionais são sem glúten? | tag "sem glúten" **não** aplicada aos veganos | `src/data/cardapio.js` (campo `tags`) |
-| P12 | **Confirmação:** Mandala de Morango segue no cardápio atual? | exibido como "Sazonal — consultar disponibilidade" | `src/data/cardapio.js` |
 | P13 | Domínio/hospedagem e imagem de compartilhamento (Open Graph) | fora do escopo; OG usa foto do bolo de festa | `index.html` `<meta property="og:image">` |
+| P14 | **Preços em revisão:** a Tânia vai recalcular os custos de todos os itens | preços atuais mantidos | `src/data/cardapio.js` |
 
 ## 14. Entrega
 

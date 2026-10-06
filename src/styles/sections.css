@@ -61,17 +61,8 @@
 .ingredientes__grade li { display: grid; justify-items: center; align-content: start; gap: var(--sp-2); font-size: var(--fs-xs); font-weight: 700; color: var(--c-marinho); }
 .ingredientes__grade svg { width: 56px; height: 56px; }
 
-/* Sobre */
-.sobre { z-index: 1; background: var(--c-creme); }
-.sobre__grade { display: grid; gap: var(--sp-6); }
-.sobre__foto { margin: 0; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--sh-md); max-width: 420px; }
-.sobre__foto img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
-.sobre__texto p:not(.manuscrita) { margin-top: var(--sp-4); font-size: var(--fs-lg); }
-.sobre__assinatura { margin-top: var(--sp-4); }
-.deco--folha-3 { top: 20px; right: -16px; transform: rotate(160deg); }
-
 /* Depoimentos */
-.depoimentos { z-index: 1; background: var(--c-creme); padding-top: var(--sp-6); } /* mesmo fundo do Sobre: evita 128px de vão */
+.depoimentos { z-index: 1; background: var(--c-creme); padding-top: var(--sp-6); }
 .depoimentos__lista { list-style: none; margin: var(--sp-5) 0 0; padding: 0; display: grid; gap: var(--sp-4); }
 .depoimento { background: var(--c-branco); border-radius: var(--r-lg); padding: var(--sp-5); box-shadow: var(--sh-sm); }
 .depoimento blockquote { margin: 0; font-size: var(--fs-lg); color: var(--c-marinho); }
@@ -110,7 +101,6 @@
   .selo-item { grid-template-columns: 1fr; justify-items: center; text-align: center; }
   .selo-item img { width: 96px; height: 96px; }
   .grade-produtos { grid-template-columns: repeat(2, 1fr); }
-  .sobre__grade { grid-template-columns: 0.9fr 1.1fr; align-items: center; }
   .encomendar__grade { grid-template-columns: 1.2fr 0.8fr; align-items: center; }
   .btn--bloco { width: auto; }
   .encomendar__marque { text-align: left; } /* botão deixa de ser 100%: alinha com ele */

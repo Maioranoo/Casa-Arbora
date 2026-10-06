@@ -15,8 +15,8 @@ const SOB_CONSULTA = { rotulo: 'Sob consulta', detalhe: '', preco: null }
 const NOTA_BF = 'Não contém açúcar, lactose, glúten, corantes ou conservantes. Adoçado com frutas frescas e secas, 100% vegano.'
 
 const vegano = (id, nome, extra = {}) => ({
-  id: `vegano-${id}`, nome, tags: ['vg'],
-  descricao: `Bolo vegano de ${nome}, adoçado com açúcar demerara orgânico.`, // TODO(conteúdo) P6
+  id: `vegano-${id}`, nome, tags: ['vg', 'sg'],
+  descricao: `Bolo vegano de ${nome}, adoçado com açúcar demerara orgânico.`, // TODO(conteúdo) P6: linha vegana será refeita pela Tânia
   foto: img(`vegano-${id}`), alt: `Bolo vegano de ${nome}`,
   opcoes: [P_VEGANO, M_VEGANO], pendente: ['descricao'], ...extra,
 })
@@ -49,10 +49,6 @@ export const categorias = [
       { id: 'classico-pera-amendoas', nome: 'Pera & Amêndoas', tags: ['bf'],
         descricao: 'Massa de pera e tâmaras. Decorado com peras e amêndoas laminadas. Finalizado com leite de coco em pó.',
         foto: img('classico-pera-amendoas'), alt: 'Bolo de pera com amêndoas laminadas', opcoes: [P_CLASSICO, M_CLASSICO] },
-      { id: 'classico-maca-baunilha-nozes', nome: 'Maçã, Baunilha & Nozes', tags: ['bf'],
-        descricao: 'Massa de maçã e baunilha. Decorado com lascas de maçã e nozes picadas. Finalizado com leite de coco em pó e canela.',
-        foto: img('classico-maca-baunilha-nozes'), alt: 'Bolo de maçã, baunilha e nozes', opcoes: [P_CLASSICO, M_CLASSICO],
-        pendente: ['foto'] }, // TODO(conteúdo) P1
       { id: 'classico-cenoura-damasco-cacau', nome: 'Cenoura, Damasco & Cacau', tags: ['bf'],
         descricao: 'Massa de cenoura e damascos. Coberto com ganache de chocolate 50% Baby Friendly e finalizado com physalis.',
         foto: img('classico-cenoura-damasco-cacau'), alt: 'Bolo de cenoura e damasco com ganache de chocolate',
@@ -60,8 +56,7 @@ export const categorias = [
       { id: 'classico-mandala-morango', nome: 'Mandala de Morango', tags: ['bf', 'sazonal'],
         descricao: 'Bolo de cacau 100%, tâmaras e frutas secas, coberto com ganache de chocolate 50% e decorado com morangos frescos.',
         foto: img('classico-mandala-morango'), alt: 'Bolo coberto com morangos em formato de mandala',
-        opcoes: [{ rotulo: 'Pequeno', detalhe: '8 a 12 fatias · 850 g', preco: 190 }, { rotulo: 'Médio', detalhe: '15 a 17 fatias · 1,5 kg', preco: 280 }],
-        pendente: ['confirmar-disponibilidade'] }, // TODO(conteúdo) P12
+        opcoes: [{ rotulo: 'Pequeno', detalhe: '8 a 12 fatias · 850 g', preco: 190 }, { rotulo: 'Médio', detalhe: '15 a 17 fatias · 1,5 kg', preco: 280 }] },
     ],
   },
   {
@@ -81,10 +76,9 @@ export const categorias = [
   },
   {
     id: 'veganos', nome: 'Veganos', subtitulo: 'Linha vegana tradicional',
-    nota: 'Sem ingredientes de origem animal. Adoçados com açúcar demerara orgânico. Sem corantes ou conservantes. Pequeno: 7 a 9 fatias, 800 g · Médio: 12 a 14 fatias, 1,2 kg.',
+    nota: 'Sem ingredientes de origem animal. Sem glúten. Adoçados com açúcar demerara orgânico. Sem corantes ou conservantes. Pequeno: 7 a 9 fatias, 800 g · Médio: 12 a 14 fatias, 1,2 kg.',
     itens: [
       vegano('chocolatudo', 'Chocolatudo'),
-      vegano('laranja', 'Laranja', { pendente: ['descricao', 'foto-baixa-resolucao'] }),
       vegano('limao-siciliano', 'Limão Siciliano'),
       vegano('chocolate-banana', 'Chocolate & Banana', { pendente: ['descricao', 'foto-baixa-resolucao'] }),
       vegano('cenoura-tamara', 'Cenoura & Tâmara'),
@@ -107,10 +101,6 @@ export const categorias = [
     id: 'muffins', nome: 'Muffins', subtitulo: 'Baby Friendly',
     nota: `Ótimo para o lanche da escola. Pode congelar para ter sempre em casa. ${NOTA_BF}`,
     itens: [
-      { id: 'muffin-banana', nome: 'Banana', tags: ['bf'], descricao: 'Massa de banana com recheio de pedacinhos de banana.',
-        foto: img('muffin-banana'), alt: 'Muffins Baby Friendly', opcoes: [CAIXA_MUFFINS], pendente: ['foto'] }, // TODO(conteúdo) P2
-      { id: 'muffin-cacau', nome: 'Cacau', tags: ['bf'], descricao: 'Massa de cacau com recheio de gotas de chocolate Baby Friendly.',
-        foto: img('muffin-cacau'), alt: 'Muffins Baby Friendly', opcoes: [CAIXA_MUFFINS], pendente: ['foto'] }, // TODO(conteúdo) P3
       { id: 'muffin-cenoura', nome: 'Cenoura', tags: ['bf'], descricao: 'Massa de damasco e cenoura com recheio de gotas de chocolate Baby Friendly.',
         foto: img('muffin-cenoura'), alt: 'Muffins de cenoura com gotas de chocolate', opcoes: [CAIXA_MUFFINS] },
     ],

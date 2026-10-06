@@ -153,14 +153,12 @@ CARDAPIO = {
     "classico-banana-maca": SET[20],
     "classico-cacau-tamaras": SET[19],
     "classico-pera-amendoas": SET[3],
-    "classico-maca-baunilha-nozes": SET[3],      # TODO(conteúdo) P1: foto própria
     "classico-cenoura-damasco-cacau": GPT[13],
     "classico-mandala-morango": GPT[0],
     "festa-limao-mirtilos": SET[5],
     "festa-cacau-tamaras": SET[6],
     "festa-damasco-banana": SET[7],
     "vegano-chocolatudo": SET[8],
-    "vegano-laranja": ANT[3],                     # TODO(conteúdo) P5: baixa resolução
     "vegano-limao-siciliano": SET[10],
     "vegano-chocolate-banana": ANT[0],            # TODO(conteúdo) P5: baixa resolução
     "vegano-cenoura-tamara": SET[11],
@@ -168,8 +166,6 @@ CARDAPIO = {
     "docinho-cacau-avela": SET[12],
     "docinho-beijinho": SET[14],
     "docinho-cajuzinho": SET[13],
-    "muffin-banana": SET[17],                     # TODO(conteúdo) P2
-    "muffin-cacau": SET[17],                      # TODO(conteúdo) P3
     "muffin-cenoura": SET[17],
     "granola": SET[15],
 }
@@ -186,14 +182,6 @@ KITS = {
     "kit-escolinha": kit(SET[17], SET[14]),
     "kit-festa-baby-friendly": kit(SET[6], SET[13]),
 }
-
-def placeholder_confeiteira():
-    """TODO(conteúdo) P7: placeholder ilustrado (não usar foto de terceiros como se fosse a Tânia)."""
-    img = Image.new("RGB", (800, 1000), (243, 234, 219))
-    d = ImageDraw.Draw(img)
-    d.ellipse((250, 260, 550, 560), fill=(169, 186, 148))
-    d.rounded_rectangle((180, 600, 620, 1000), radius=200, fill=(169, 186, 148))
-    salvar_jpg(img, OUT / "confeiteira.jpg")
 
 def main():
     for nome in ("baby-friendly", "sem-gluten", "vegano"):
@@ -215,7 +203,6 @@ def main():
     icones()
     # Decorações
     salvar_jpg(quadrada(SET[18], 700), OUT / "deco" / "frutas-folha.jpg")
-    placeholder_confeiteira()
     print("ok")
 
 if __name__ == "__main__":

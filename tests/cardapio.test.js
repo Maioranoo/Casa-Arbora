@@ -19,6 +19,13 @@ describe('dados', () => {
       expect(i.opcoes.length).toBeGreaterThan(0)
     }
   })
+  it('contagem por categoria e linhas ajustadas (v3)', () => {
+    const n = Object.fromEntries(categorias.map((c) => [c.id, c.itens.length]))
+    expect(n).toEqual({ classicos: 7, festa: 3, veganos: 5, docinhos: 3, muffins: 1, granola: 1, kits: 3 })
+    expect(categorias.find((c) => c.id === 'veganos').itens.every((i) => i.tags.includes('vg') && i.tags.includes('sg'))).toBe(true)
+    const ids = categorias.flatMap((c) => c.itens.map((i) => i.id))
+    for (const x of ['vegano-laranja', 'classico-maca-baunilha-nozes', 'muffin-banana', 'muffin-cacau']) expect(ids).not.toContain(x)
+  })
   it('nunca usa "baixo índice glicêmico"', () => {
     expect(JSON.stringify(categorias).toLowerCase()).not.toContain('índice glicêmico')
   })
@@ -49,7 +56,7 @@ describe('renderCardapio', () => {
     expect(tabs[0].getAttribute('aria-selected')).toBe('true')
     const panels = root.querySelectorAll('[role="tabpanel"]')
     expect([...panels].filter((p) => !p.hidden)).toHaveLength(1)
-    expect(panels[0].querySelectorAll('.produto')).toHaveLength(8)
+    expect(panels[0].querySelectorAll('.produto')).toHaveLength(7)
   })
 
   it('clicar numa aba troca o painel e dispara cardapio:change', () => {
@@ -99,7 +106,7 @@ describe('renderCardapio', () => {
   it('etiquetas de pendência só aparecem com dev: true', () => {
     expect(root.querySelector('.dev-pendente')).toBeNull()
     renderCardapio(root, categorias, { dev: true })
-    expect(root.querySelector('[data-item="classico-maca-baunilha-nozes"] .dev-pendente').textContent).toBe('PENDENTE: foto')
+    expect(root.querySelector('[data-item="kit-escolinha"] .dev-pendente').textContent).toBe('PENDENTE: foto')
   })
 
   it('imagens têm width/height e lazy', () => {

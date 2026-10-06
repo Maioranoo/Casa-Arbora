@@ -70,11 +70,10 @@ tests/                  # testes Vitest
 |---|---|
 | Nome da marca, número do WhatsApp, Instagram, mensagens | `src/config.js` |
 | Itens, descrições, tamanhos e preços do cardápio | `src/data/cardapio.js` |
-| Textos das seções (hero, como escolher, sobre, depoimentos, como encomendar, rodapé) | `index.html` |
+| Textos das seções (hero, como escolher, depoimentos, como encomendar, rodapé) | `index.html` |
 | Número do WhatsApp nos links sem JavaScript | `index.html` (procure `wa.me/5511942237434`) |
 | Fotos do cardápio | `public/images/cardapio/<id-do-item>.jpg` (quadradas, ~800 px) |
 | Bolo animado do topo | `public/images/bolo-topo.webp` + `bolo-topo.png` (quadrados, fundo transparente, ~670 px; troque os dois ou regenere pelo script) |
-| Foto da Tânia | `public/images/confeiteira.jpg` (retrato 4:5) |
 | Logos | `public/images/logo.*` (topo), `logo-claro.*` (rodapé), `logo-preloader.*` (tela de carregamento) |
 | Ícones | `public/images/favicon-32.png`, `favicon.png`, `apple-touch-icon.png` |
 | Selos | `public/images/selos/*.png` |
@@ -87,19 +86,13 @@ Para regerar as imagens a partir dos PDFs, coloque os arquivos em `assets-src/` 
 
 | # | O quê | Situação no site até chegar | Onde trocar |
 |---|---|---|---|
-| P1 | **Foto: Clássico Maçã, Baunilha & Nozes** | usa foto de Pera & Amêndoas | `public/images/cardapio/classico-maca-baunilha-nozes.jpg` |
-| P2 | **Foto: Muffin Banana** | usa foto do muffin de cenoura | `public/images/cardapio/muffin-banana.jpg` |
-| P3 | **Foto: Muffin Cacau** | usa foto do muffin de cenoura | `public/images/cardapio/muffin-cacau.jpg` |
-| P4 | **Fotos: Kits** (Primeira Festinha, Escolinha, Festa) | composição com fotos de bolo + docinhos/muffins | `public/images/cardapio/kit-*.jpg` |
-| P5 | **Fotos em boa resolução: Veganos Laranja e Chocolate & Banana** | usa a foto do PDF antigo (~550 px) | `public/images/cardapio/vegano-laranja.jpg`, `vegano-chocolate-banana.jpg` |
-| P6 | **Descrição dos 6 bolos veganos** | texto padrão "Bolo vegano de {sabor}, adoçado com açúcar demerara orgânico." | `src/data/cardapio.js` |
-| P7 | **Foto da Tânia** | placeholder ilustrado | `public/images/confeiteira.jpg` |
-| P8 | **História da Tânia** (2 a 4 frases) | texto provisório | `index.html` → seção `#sobre` |
+| P4 | **Kits:** a Tânia vai calcular os preços e montar as fotos (Primeira Festinha, Escolinha, Festa) | sob consulta, com composição provisória de fotos | `src/data/cardapio.js`, `public/images/cardapio/kit-*.jpg` |
+| P5 | **Foto em boa resolução: Vegano Chocolate & Banana** | usa a foto do PDF antigo (~550 px) | `public/images/cardapio/vegano-chocolate-banana.jpg` |
+| P6 | **Linha vegana será refeita pela Tânia no cardápio novo** (sabores, descrições e fotos) | texto padrão "Bolo vegano de {sabor}, adoçado com açúcar demerara orgânico." | `src/data/cardapio.js` |
 | P9 | **Depoimentos reais** (3, com nome, cidade e autorização) | 3 exemplos fictícios, que **não podem ir ao ar** | `index.html` → seção `#depoimentos` |
 | P10 | **Logo em vetor (SVG)** | resolvida para web com as versões raster de 1000 px; SVG ainda é o ideal | `public/images/logo.*`, `logo-claro.*`, `logo-preloader.*` |
-| P11 | **Confirmação:** veganos tradicionais são sem glúten? | tag "sem glúten" não aplicada aos veganos | `src/data/cardapio.js` (campo `tags`) |
-| P12 | **Confirmação:** o Mandala de Morango segue no cardápio? | exibido como "Sazonal, consultar disponibilidade" | `src/data/cardapio.js` |
 | P13 | **Domínio, hospedagem e imagem de compartilhamento** | `og:image` relativo, precisa virar URL absoluta ao publicar | `index.html` → `<meta property="og:image">` |
+| P14 | **Preços em revisão:** a Tânia vai recalcular os custos de todos os itens | preços atuais mantidos | `src/data/cardapio.js` |
 
 ---
 
