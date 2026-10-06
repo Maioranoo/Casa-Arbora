@@ -8,6 +8,7 @@
 .topo__menu-btn[aria-expanded="true"] .ico-fechar { display: block; }
 .topo__nav { position: fixed; inset: var(--header-h) 0 auto 0; background: var(--c-creme); padding: var(--sp-4) var(--gutter) var(--sp-6); box-shadow: var(--sh-lg); display: grid; gap: var(--sp-4); visibility: hidden; opacity: 0; transform: translateY(-8px); transition: opacity var(--dur-rapida) var(--ease-saida), transform var(--dur-rapida) var(--ease-saida), visibility 0s linear var(--dur-rapida); }
 .topo__nav.is-aberto { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+@media (prefers-reduced-motion: reduce) { .topo__nav { transform: none; } }
 .topo__nav ul { list-style: none; margin: 0; padding: 0; }
 .topo__nav ul a { display: flex; align-items: center; min-height: 52px; font-family: var(--f-titulo); font-size: var(--fs-lg); font-weight: 600; color: var(--c-marinho); text-decoration: none; border-bottom: 1px solid var(--c-bege); }
 
@@ -37,8 +38,8 @@
 .selo-item { display: grid; grid-template-columns: 72px 1fr; gap: var(--sp-4); align-items: start; background: var(--c-creme); border-radius: var(--r-lg); padding: var(--sp-4); box-shadow: var(--sh-sm); }
 .selo-item img { width: 72px; height: 72px; }
 .selo-item h3 { font-size: var(--fs-lg); margin-bottom: var(--sp-1); }
-.selo-item p { font-size: var(--fs-sm); }
-.faixa__nota { margin-top: var(--sp-5); font-size: var(--fs-sm); color: var(--c-texto-suave); }
+.selo-item p { font-size: var(--fs-base); }
+.faixa__nota { margin-top: var(--sp-5); font-size: var(--fs-base); color: var(--c-texto-suave); }
 
 /* Cardápio (fundo transparente: o bolo passa por trás dos cards) */
 .cardapio { z-index: auto; }
@@ -65,7 +66,7 @@
 .depoimentos__lista { list-style: none; margin: var(--sp-5) 0 0; padding: 0; display: grid; gap: var(--sp-4); }
 .depoimento { background: var(--c-branco); border-radius: var(--r-lg); padding: var(--sp-5); box-shadow: var(--sh-sm); }
 .depoimento blockquote { margin: 0; font-size: var(--fs-lg); color: var(--c-marinho); }
-.depoimento__autor { margin-top: var(--sp-3); font-size: var(--fs-sm); font-weight: 700; color: var(--c-texto-suave); }
+.depoimento__autor { margin-top: var(--sp-3); font-size: var(--fs-base); font-weight: 700; color: var(--c-texto-suave); }
 
 /* Como encomendar */
 .encomendar { z-index: 1; background: var(--c-bege); margin-top: 18px; }
@@ -75,13 +76,14 @@
 .passos li { display: grid; grid-template-columns: 44px 1fr; gap: var(--sp-3); }
 .passos__num { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--c-terracota); color: var(--c-branco); font-family: var(--f-titulo); font-weight: 800; }
 .passos h3 { font-size: var(--fs-lg); }
-.passos p { font-size: var(--fs-sm); color: var(--c-texto-suave); }
-.encomendar__marque { margin-top: var(--sp-3); text-align: center; font-size: var(--fs-sm); }
+.passos p { font-size: var(--fs-base); color: var(--c-texto-suave); }
+.encomendar__marque { margin-top: var(--sp-3); text-align: center; font-size: var(--fs-base); }
 .encomendar__foto { width: min(80%, 360px); margin-inline: auto; border-radius: 50%; box-shadow: var(--sh-lg); }
 
 /* Rodapé */
 .rodape { position: relative; z-index: 1; background: var(--c-marinho); color: var(--c-creme); padding: var(--sp-8) 0 var(--sp-6); margin-top: 18px; text-align: center; }
 .rodape .rasgado { color: var(--c-marinho); }
+.rodape :focus-visible { outline-color: var(--c-creme); } /* terracota sobre marinho fica abaixo de 3:1 */
 .rodape__conteudo { display: grid; justify-items: center; gap: var(--sp-3); }
 .rodape__conteudo > img { height: 96px; width: auto; }
 .rodape__frase { color: #F4C9B3; font-size: var(--fs-2xl); }

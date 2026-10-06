@@ -17,7 +17,7 @@
 
 /* Tags e selos */
 .tags { display: flex; flex-wrap: wrap; gap: var(--sp-2); list-style: none; margin: 0 0 var(--sp-2); padding: 0; }
-.tag { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px 2px 4px; border-radius: var(--r-pill); background: var(--c-salvia-claro); color: var(--c-oliva); font-size: var(--fs-xs); font-weight: 700; }
+.tag { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px 2px 4px; border-radius: var(--r-pill); background: var(--c-salvia-claro); color: var(--c-oliva-escuro); font-size: var(--fs-xs); font-weight: 700; }
 .tag img { width: 20px; height: 20px; }
 .tag--sazonal, .tag--sc { background: #F6E3D8; color: var(--c-terracota-escuro); padding-left: 10px; }
 
@@ -27,7 +27,7 @@
 .aba[aria-selected="true"] { background: var(--c-marinho); border-color: var(--c-marinho); color: var(--c-branco); }
 .painel__cabeca { position: relative; z-index: 1; background: var(--c-bege); border-radius: var(--r-md); padding: var(--sp-3) var(--sp-4); margin-bottom: var(--sp-4); }
 .painel__sub { font-family: var(--f-titulo); font-weight: 600; color: var(--c-marinho); }
-.painel__nota { font-size: var(--fs-sm); color: var(--c-texto-suave); }
+.painel__nota { font-size: var(--fs-base); color: var(--c-texto-suave); }
 
 /* Card de produto */
 .grade-produtos { display: grid; gap: var(--sp-5); }
@@ -36,7 +36,7 @@
 .produto__foto img { width: 100%; height: 100%; object-fit: cover; }
 .produto__corpo { display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-4) var(--sp-4) var(--sp-5); flex: 1; }
 .produto__nome { font-size: var(--fs-xl); }
-.produto__desc { color: var(--c-texto-suave); font-size: var(--fs-sm); }
+.produto__desc { color: var(--c-texto-suave); font-size: var(--fs-base); }
 .tamanhos { border: 0; margin: var(--sp-2) 0 0; padding: 0; display: grid; gap: var(--sp-2); }
 .tamanho { display: grid; grid-template-columns: auto 1fr auto; align-items: center; column-gap: var(--sp-3); min-height: var(--toque); padding: var(--sp-2) var(--sp-3); border: 1.5px solid var(--c-bege-escuro); border-radius: var(--r-md); cursor: pointer; }
 .tamanho input { accent-color: var(--c-terracota); width: 20px; height: 20px; margin: 0; grid-row: span 2; }
@@ -45,7 +45,7 @@
 .tamanho__preco { grid-column: 3; grid-row: 1 / span 2; font-weight: 700; color: var(--c-marinho); }
 .tamanho:has(input:checked) { border-color: var(--c-terracota); background: #FCF1EB; }
 .tamanho:has(input:focus-visible) { outline: 3px solid var(--c-terracota); outline-offset: 2px; }
-.opcao-unica { font-size: var(--fs-sm); color: var(--c-texto-suave); }
+.opcao-unica { font-size: var(--fs-base); color: var(--c-texto-suave); }
 .produto__rodape { margin-top: auto; padding-top: var(--sp-3); display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); }
 .produto__preco { font-family: var(--f-titulo); font-weight: 800; font-size: var(--fs-xl); color: var(--c-marinho); }
 
