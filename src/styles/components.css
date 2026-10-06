@@ -57,6 +57,8 @@
 [data-pendente] { position: relative; }
 /* Logo: etiqueta ao lado, para não cobrir a marca */
 .topo__logo > .dev-pendente { top: 50%; left: 100%; margin-left: 8px; transform: translateY(-50%); white-space: nowrap; }
+/* Texto (história, depoimentos): etiqueta no fluxo, acima do texto, para não cobrir as primeiras palavras */
+p > .dev-pendente, .container > .dev-pendente { position: static; display: block; width: fit-content; margin-bottom: 8px; }
 
 /* Painéis do cardápio usam o atributo hidden: nenhuma regra de display pode revelá-los */
 .painel[hidden] { display: none; }
