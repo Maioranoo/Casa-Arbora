@@ -192,6 +192,45 @@ Rodados após a implementação e novamente após o polimento:
 
 Após tudo funcionando: auditoria de contraste, alinhamento, espaçamento, hierarquia, estados hover/foco/toque, acessibilidade e detalhes visuais; corrigir tudo o que for apontado; repetir os testes.
 
-## 13. Entrega
+## 13. Pendências de conteúdo (o que falta e precisa ser providenciado)
+
+Itens marcados assim aparecem em três lugares: (a) nesta tabela; (b) no código, com comentário `TODO(conteúdo)` e, nos dados do cardápio, o campo `pendente: ['foto' | 'descricao' | 'foto-baixa-resolucao']`; (c) **no site em modo de desenvolvimento** (`npm run dev`), com uma etiqueta tracejada "PENDENTE: …" sobre o elemento. A etiqueta **não** aparece no build de produção (`import.meta.env.DEV`).
+
+### Fotos já mapeadas (origem → item)
+| Item | Foto | Origem |
+|---|---|---|
+| Clássico Limão Siciliano & Mirtilos | `gpt p01_9` | fotos tratadas |
+| Clássico Banana & Amoras | `set p01_21` | setembro |
+| Clássico Banana & Maçã | `set p01_20` | setembro |
+| Clássico Cacau & Tâmaras (+ `bolo-topo.png`) | `set p01_19` | setembro |
+| Clássico Pera & Amêndoas | `set p01_3` | setembro |
+| Cenoura, Damasco & Cacau (ganache) | `gpt p01_13` | fotos tratadas |
+| Mandala de Morango | `gpt p01_0` | fotos tratadas |
+| Festa Limão & Mirtilos / Cacau & Tâmaras / Damasco & Banana | `set p01_5` / `set p01_6` / `set p01_7` | setembro |
+| Veganos Chocolatudo / Limão / Cenoura & Tâmara / Baunilha | `set p01_8` / `set p01_10` / `set p01_11` / `set p01_9` | setembro |
+| Docinhos Cacau & Avelã / Beijinho / Cajuzinho | `set p01_12` / `set p01_14` / `set p01_13` | setembro |
+| Muffin Cenoura | `set p01_17` | setembro |
+| Granola | `set p01_15` (+ embalagem `set p01_16`) | setembro |
+| Logo real (vaso com folhas) | `gpt p01_4` → SVG/PNG no header e favicon | fotos tratadas |
+| Faixa "Como encomendar" / decoração | `set p01_18`, `gpt p01_17` | ambos |
+
+### Pendentes
+| # | O quê | Situação no site até chegar | Onde trocar |
+|---|---|---|---|
+| P1 | **Foto: Clássico Maçã, Baunilha & Nozes** | usa foto de Pera & Amêndoas + etiqueta dev | `public/images/cardapio/classico-maca-baunilha-nozes.jpg` |
+| P2 | **Foto: Muffin Banana** | usa foto do muffin de cenoura | `public/images/cardapio/muffin-banana.jpg` |
+| P3 | **Foto: Muffin Cacau** | usa foto do muffin de cenoura | `public/images/cardapio/muffin-cacau.jpg` |
+| P4 | **Fotos: Kits** (Primeira Festinha, Escolinha, Festa) | composição com fotos de bolo + docinhos/muffins | `public/images/cardapio/kit-*.jpg` |
+| P5 | **Foto em boa resolução: Veganos Laranja e Chocolate & Banana** | usa a foto do PDF antigo (~550px, aceitável no celular) | `public/images/cardapio/vegano-laranja.jpg`, `vegano-chocolate-banana.jpg` |
+| P6 | **Descrição dos 6 bolos veganos** (ingredientes/decoração) | texto padrão "Bolo vegano de {sabor}, adoçado com açúcar demerara orgânico." | `src/data/cardapio.js` |
+| P7 | **Foto da Tânia** | placeholder Unsplash | `public/images/confeiteira.jpg` |
+| P8 | **História da Tânia** (2–4 frases) | texto provisório marcado | `index.html` → seção `#sobre` |
+| P9 | **Depoimentos reais** (3, com nome e cidade, com autorização) | 3 exemplos fictícios | `index.html` → seção `#depoimentos` |
+| P10 | **Logo em vetor (SVG) ou PNG em alta** | logo extraído do PDF (500–1000px), vetorizado/limpo | `public/images/logo.svg` |
+| P11 | **Confirmação:** veganos tradicionais são sem glúten? | tag "sem glúten" **não** aplicada aos veganos | `src/data/cardapio.js` (campo `tags`) |
+| P12 | **Confirmação:** Mandala de Morango segue no cardápio atual? | exibido como "Sazonal — consultar disponibilidade" | `src/data/cardapio.js` |
+| P13 | Domínio/hospedagem e imagem de compartilhamento (Open Graph) | fora do escopo; OG usa foto do bolo de festa | `index.html` `<meta property="og:image">` |
+
+## 14. Entrega
 
 Screenshots mobile, resumo das correções da auditoria e guia de onde trocar imagens, textos, cardápio/preços, marca e número do WhatsApp (também no README).
