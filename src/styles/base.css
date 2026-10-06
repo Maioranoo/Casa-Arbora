@@ -14,10 +14,11 @@ body {
 }
 img, svg { display: block; max-width: 100%; }
 img { height: auto; }
-h1, h2, h3 { font-family: var(--f-titulo); color: var(--c-marinho); line-height: var(--lh-titulo); margin: 0; font-weight: 800; letter-spacing: -0.01em; }
+h1, h2, h3 { font-family: var(--f-titulo); color: var(--c-marinho); line-height: var(--lh-titulo); margin: 0; font-weight: 800; letter-spacing: -0.01em; text-wrap: balance; }
 p { margin: 0; }
 a { color: inherit; }
 button { font: inherit; color: inherit; }
+::selection { background: var(--c-salvia-claro); color: var(--c-marinho); }
 :focus-visible { outline: 3px solid var(--c-terracota); outline-offset: 3px; border-radius: 4px; }
 
 .container { width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
