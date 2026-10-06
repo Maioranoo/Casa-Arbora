@@ -165,7 +165,7 @@ Conteúdo:
 
 ## 10. Imagens
 
-- **Cardápio:** fotos reais dos PDFs, recortadas/otimizadas (~800px no maior lado, JPEG ~80), uma por item, nome = id do item. Itens sem foto própria usam a melhor foto da categoria (ex.: veganos sem foto, muffins por sabor, kits); o mapeamento item → foto é revisado visualmente numa folha de contato antes de fechar.
+- **Cardápio:** fotos reais dos PDFs, recortadas/otimizadas (~800px no maior lado, JPEG ~80), uma por item, nome = id do item. Itens sem foto própria usam a melhor foto da categoria (ex.: kits); o mapeamento item → foto é revisado visualmente numa folha de contato antes de fechar.
 - **Selos:** `2.jpg`, `3.jpg`, `4.jpg` enviados → PNG com fundo transparente (recorte circular).
 - **Placeholders:** decorações são SVG próprios e recortes das fotos reais. Marcados no README.
 - `width`/`height` explícitos, `loading="lazy"` fora do hero, `alt` descritivo.

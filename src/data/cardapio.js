@@ -1,5 +1,6 @@
 // Cardápio — edite aqui nomes, descrições, tamanhos e preços.
 // preco: null => "Sob consulta". pendente: lista do que falta (aparece só em `npm run dev`).
+// TODO(conteúdo) P14: preços em revisão — a Tânia vai recalcular os custos de todos os itens (atualizar os valores abaixo).
 const img = (id) => `/images/cardapio/${id}.jpg`
 
 const P_CLASSICO = { rotulo: 'Pequeno', detalhe: '9 a 10 fatias · 900 g', preco: 160 }
@@ -120,7 +121,7 @@ export const categorias = [
     nota: 'Valores sob consulta. Conte a data, o número de convidados e as restrições alimentares.',
     itens: [
       { id: 'kit-primeira-festinha', tipo: 'kit', nome: 'Kit Primeira Festinha', tags: ['bf', 'sc'], descricao: 'Bolo Baby Friendly + 15 docinhos.',
-        foto: img('kit-primeira-festinha'), alt: 'Bolo de festa e docinhos', opcoes: [SOB_CONSULTA], pendente: ['foto'] }, // TODO(conteúdo) P4
+        foto: img('kit-primeira-festinha'), alt: 'Bolo de festa e docinhos', opcoes: [SOB_CONSULTA], pendente: ['foto'] }, // TODO(conteúdo) P4: a Tânia vai calcular os preços e montar as fotos dos kits
       { id: 'kit-escolinha', tipo: 'kit', nome: 'Kit Escolinha', tags: ['bf', 'sc'], descricao: '24 muffins + docinhos.',
         foto: img('kit-escolinha'), alt: 'Muffins e docinhos', opcoes: [SOB_CONSULTA], pendente: ['foto'] },
       { id: 'kit-festa-baby-friendly', tipo: 'kit', nome: 'Kit Festa Baby Friendly', tags: ['bf', 'sc'], descricao: 'Bolo de duas camadas + 30 docinhos.',
