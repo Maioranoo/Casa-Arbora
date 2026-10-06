@@ -8,7 +8,8 @@ import { initPreloader } from './js/preloader.js'
 
 // Primeiro: garante a saída da tela de carregamento mesmo se um init abaixo quebrar.
 // A saída é assíncrona (espera fontes/bolo), então os inits síncronos abaixo — incluindo o cardápio — rodam antes dela.
-initPreloader()
+// minDelay: com internet rápida a tela de carregamento sumiria num piscar ("vulto"); fica pelo menos 1s.
+initPreloader({ minDelay: 1000 })
 for (const init of [initMenu, initCardapio, initCakeScroll, initReveals, initWhatsAppLinks, initDevPendentes]) {
   try { init() } catch (erro) { console.error(`[casa-arbora] ${init.name} falhou:`, erro) }
 }

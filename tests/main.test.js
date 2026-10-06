@@ -19,4 +19,8 @@ describe('main.js', () => {
     expect(chamadas).toEqual(['initPreloader', 'initMenu', 'initCardapio', 'initCakeScroll', 'initReveals', 'initWhatsAppLinks', 'initDevPendentes'])
     expect(erro).toHaveBeenCalledTimes(2)
   })
+
+  it('mantém o preloader por pelo menos 1 segundo', () => {
+    expect(m.initPreloader).toHaveBeenCalledWith({ minDelay: 1000 })
+  })
 })
