@@ -52,6 +52,26 @@
 .produto__rodape { margin-top: auto; padding-top: var(--sp-3); display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); }
 .produto__preco { font-family: var(--f-titulo); font-weight: 800; font-size: var(--fs-xl); color: var(--c-marinho); }
 
+/* Celular: 2 cards por linha (~165px cada em 375px), então o card fica compacto:
+   preço do tamanho abaixo do detalhe e botão em largura total abaixo do preço */
+@media (max-width: 767px) {
+  .grade-produtos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-3); }
+  .produto { border-radius: var(--r-md); }
+  .produto__corpo { gap: var(--sp-1); padding: var(--sp-3) var(--sp-3) var(--sp-4); }
+  .produto__nome { font-size: var(--fs-lg); }
+  .produto__desc, .opcao-unica { font-size: var(--fs-xs); line-height: 1.45; }
+  .tags { gap: var(--sp-1); margin-bottom: var(--sp-1); }
+  .tag { font-size: 0.75rem; padding-right: 8px; }
+  .tag--sazonal, .tag--sc { padding-left: 8px; }
+  .tag img { width: 16px; height: 16px; }
+  .tamanho { grid-template-columns: auto 1fr; column-gap: var(--sp-2); padding: var(--sp-2); font-size: var(--fs-xs); }
+  .tamanho input { width: 18px; height: 18px; grid-row: span 3; }
+  .tamanho__preco { grid-column: 2; grid-row: auto; }
+  .produto__rodape { flex-direction: column; align-items: stretch; gap: var(--sp-2); }
+  .produto__preco { font-size: var(--fs-lg); }
+  .produto__rodape .btn { padding: 0 var(--sp-3); font-size: var(--fs-xs); }
+}
+
 /* Pendências (só em dev) */
 .dev-pendente { position: absolute; top: 8px; left: 8px; z-index: 5; padding: 2px 8px; border: 2px dashed #D12; border-radius: 6px; background: #FFF4F4; color: #B00; font: 700 12px/1.4 system-ui, sans-serif; }
 [data-pendente] { position: relative; }
