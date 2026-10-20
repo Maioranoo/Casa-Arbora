@@ -64,39 +64,6 @@ scripts/prepare_assets.py  # gera as imagens a partir dos PDFs em assets-src/
 tests/                  # testes Vitest
 ```
 
-## Onde trocar cada coisa
-
-| O quê | Onde |
-|---|---|
-| Nome da marca, número do WhatsApp, Instagram, mensagens | `src/config.js` |
-| Itens, descrições, tamanhos e preços do cardápio | `src/data/cardapio.js` |
-| Textos das seções (hero, como escolher, depoimentos, como encomendar, rodapé) | `index.html` |
-| Número do WhatsApp nos links sem JavaScript | `index.html` (procure `wa.me/5511942237434`) |
-| Fotos do cardápio | `public/images/cardapio/<id-do-item>.jpg` (quadradas, ~800 px) |
-| Bolo animado do topo | `public/images/bolo-topo.webp` + `bolo-topo.png` (quadrados, fundo transparente, ~670 px; troque os dois ou regenere pelo script) |
-| Logos | `public/images/logo.*` (topo), `logo-claro.*` (rodapé), `logo-preloader.*` (tela de carregamento) |
-| Ícones | `public/images/favicon-32.png`, `favicon.png`, `apple-touch-icon.png` |
-| Selos | `public/images/selos/*.png` |
-| Cores, fontes e espaçamentos | `src/styles/tokens.css` |
-| Tempo mínimo do preloader | `src/main.js` → `initPreloader({ minDelay: 1000 })` |
-
-Para regerar as imagens a partir dos PDFs, coloque os arquivos em `assets-src/` e rode `python scripts/prepare_assets.py`. O script requer `pip install pymupdf pillow numpy`.
-
-## Pendências de conteúdo
-
-| # | O quê | Situação no site até chegar | Onde trocar |
-|---|---|---|---|
-| P4 | **Kits:** a Tânia vai calcular os preços e montar as fotos (Primeira Festinha, Escolinha, Festa) | sob consulta, com composição provisória de fotos | `src/data/cardapio.js`, `public/images/cardapio/kit-*.jpg` |
-| P5 | **Foto em boa resolução: Vegano Chocolate & Banana** | usa a foto do PDF antigo (~550 px) | `public/images/cardapio/vegano-chocolate-banana.jpg` |
-| P6 | **Linha vegana será refeita pela Tânia no cardápio novo** (sabores, descrições e fotos) | texto padrão "Bolo vegano de {sabor}, adoçado com açúcar demerara orgânico." | `src/data/cardapio.js` |
-| P9 | **Depoimentos reais** (3, com nome, cidade e autorização) | 3 exemplos fictícios, que **não podem ir ao ar** | `index.html` → seção `#depoimentos` |
-| P10 | **Logo em vetor (SVG)** | resolvida para web com as versões raster de 1000 px; SVG ainda é o ideal | `public/images/logo.*`, `logo-claro.*`, `logo-preloader.*` |
-| P13 | **Domínio, hospedagem e imagem de compartilhamento** | `og:image` relativo, precisa virar URL absoluta ao publicar | `index.html` → `<meta property="og:image">` |
-| P14 | **Preços em revisão:** a Tânia vai recalcular os custos de todos os itens | preços atuais mantidos | `src/data/cardapio.js` |
-| P15 | **Bolo de Maçã & Baunilha (aba Festa):** descrição, tags (Baby Friendly/vegano?) e preços | aparece como "Sob consulta" com descrição provisória "Bolo de maçã e baunilha." e botão "Consultar" | `src/data/cardapio.js` (item `festa-maca-baunilha`) |
-
----
-
 ## Autor
 
 Desenvolvido por **João Pedro Maiorano**.
