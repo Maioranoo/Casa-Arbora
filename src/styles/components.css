@@ -29,7 +29,8 @@
 .aba[aria-selected="true"] { background: var(--c-marinho); border-color: var(--c-marinho); color: var(--c-branco); }
 .painel__cabeca { position: relative; z-index: 1; background: var(--c-bege); border-radius: var(--r-md); padding: var(--sp-3) var(--sp-4); margin-bottom: var(--sp-4); }
 .painel__sub { font-family: var(--f-titulo); font-weight: 600; color: var(--c-marinho); }
-.painel__nota { font-size: var(--fs-base); color: var(--c-texto-suave); }
+.painel__nota { margin-top: var(--sp-2); font-size: var(--fs-base); color: var(--c-texto-suave); white-space: pre-line; } /* 
+ na nota (src/data/cardapio.js) vira quebra de linha */
 
 /* Card de produto */
 .grade-produtos { display: grid; gap: var(--sp-5); }

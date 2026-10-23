@@ -48,6 +48,9 @@
 .selo-item img { width: 72px; height: 72px; }
 .selo-item h3 { font-size: var(--fs-lg); margin-bottom: var(--sp-1); }
 .selo-item p { font-size: var(--fs-base); }
+.selo-item__lista { margin: 0 0 var(--sp-3); display: grid; gap: var(--sp-2); }
+.selo-item__lista dt { font-weight: 700; color: var(--c-marinho); }
+.selo-item__lista dd { margin: 0; }
 .faixa__nota { margin-top: var(--sp-5); font-size: var(--fs-base); color: var(--c-texto-suave); }
 
 /* Cardápio (fundo transparente: o bolo passa por trás dos cards) */
