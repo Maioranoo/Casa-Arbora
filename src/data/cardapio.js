@@ -53,7 +53,7 @@ export const categorias = [
         foto: img('classico-pera-amendoas'), alt: 'Bolo de pera com amêndoas laminadas', opcoes: [P_CLASSICO, M_CLASSICO] },
       { id: 'classico-cenoura-damasco-cacau', nome: 'Cenoura, Damasco & Cacau', tags: ['bf'],
         descricao: 'Massa de cenoura e damascos. Coberto com ganache de chocolate 50% Baby Friendly e finalizado com physalis.',
-        foto: img('classico-cenoura-damasco-cacau'), alt: 'Bolo de cenoura e damasco com ganache de chocolate',
+        foto: img('classico-cenoura-damasco-cacau'), alt: 'Bolo de cenoura e damasco com ganache de chocolate, gotas de chocolate e physalis',
         opcoes: [{ rotulo: 'Pequeno', detalhe: '9 a 10 fatias · 900 g', preco: 180 }, { rotulo: 'Médio', detalhe: '12 a 14 fatias · 1,2 kg', preco: 290 }] },
     ],
   },
