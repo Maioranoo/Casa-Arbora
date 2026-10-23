@@ -67,9 +67,9 @@
 /* Depoimentos */
 .depoimentos { z-index: 1; background: var(--c-creme); padding-top: var(--sp-6); }
 .depoimentos__lista { list-style: none; margin: var(--sp-5) 0 0; padding: 0; display: grid; gap: var(--sp-4); }
-.depoimento { background: var(--c-branco); border-radius: var(--r-lg); padding: var(--sp-5); box-shadow: var(--sh-sm); }
+.depoimento { display: flex; flex-direction: column; background: var(--c-branco); border-radius: var(--r-lg); padding: var(--sp-5); box-shadow: var(--sh-sm); }
 .depoimento blockquote { margin: 0; font-size: var(--fs-lg); color: var(--c-marinho); }
-.depoimento__autor { margin-top: var(--sp-3); font-size: var(--fs-base); font-weight: 700; color: var(--c-texto-suave); }
+.depoimento__autor { margin-top: auto; padding-top: var(--sp-3); font-size: var(--fs-base); font-weight: 700; color: var(--c-texto-suave); }
 
 /* Como encomendar */
 .encomendar { z-index: 1; background: var(--c-bege); margin-top: 18px; }
@@ -104,6 +104,7 @@
   .selo-item { grid-template-columns: 1fr; justify-items: center; text-align: center; }
   .selo-item img { width: 96px; height: 96px; }
   .grade-produtos { grid-template-columns: repeat(2, 1fr); }
+  .depoimentos__lista { grid-template-columns: repeat(2, 1fr); }
   .ingredientes__foto { margin-inline: 0; }
   .ingredientes__foto img { aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 60%; border-radius: var(--r-lg); box-shadow: var(--sh-md); }
   .encomendar__grade { grid-template-columns: 1.2fr 0.8fr; align-items: center; }
@@ -138,5 +139,4 @@
   .deco--folha-2 { top: 46%; }
   .grade-produtos { grid-template-columns: repeat(3, 1fr); }
   .ingredientes__foto img { aspect-ratio: 2 / 1; object-position: 50% 40%; }
-  .depoimentos__lista { grid-template-columns: repeat(3, 1fr); }
 }
