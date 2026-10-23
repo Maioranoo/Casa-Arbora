@@ -60,9 +60,8 @@
 /* Ingredientes */
 .ingredientes { z-index: 1; background: var(--c-bege); margin-top: 18px; }
 .ingredientes .rasgado { color: var(--c-bege); }
-.ingredientes__grade { list-style: none; margin: var(--sp-5) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-5) var(--sp-2); text-align: center; }
-.ingredientes__grade li { display: grid; justify-items: center; align-content: start; gap: var(--sp-2); font-size: var(--fs-xs); font-weight: 700; color: var(--c-marinho); }
-.ingredientes__grade svg { width: 56px; height: 56px; }
+.ingredientes__foto { display: block; max-width: 886px; margin-top: var(--sp-5); } /* não amplia além do original */
+.ingredientes__foto img { width: 100%; height: auto; border-radius: var(--r-lg); box-shadow: var(--sh-md); }
 
 /* Depoimentos */
 .depoimentos { z-index: 1; background: var(--c-creme); padding-top: var(--sp-6); }
@@ -136,5 +135,4 @@
   .deco--folha-2 { top: 46%; }
   .grade-produtos { grid-template-columns: repeat(3, 1fr); }
   .depoimentos__lista { grid-template-columns: repeat(3, 1fr); }
-  .ingredientes__grade { grid-template-columns: repeat(8, 1fr); }
 }

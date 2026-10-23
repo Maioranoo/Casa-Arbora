@@ -205,6 +205,10 @@ def main():
     icones()
     # Decorações
     salvar_jpg(quadrada(SET[18], 700), OUT / "deco" / "frutas-folha.jpg")
+    # Foto da seção "O que vai dentro" (enviada à parte), no tamanho original
+    ing = Image.open(SRC / "extras" / "ingredientes.jpg").convert("RGB")
+    ing.save(OUT / "ingredientes.webp", "WEBP", quality=80, method=6)
+    salvar_jpg(ing, OUT / "ingredientes.jpg")
     print("ok")
 
 if __name__ == "__main__":
