@@ -154,11 +154,11 @@ CARDAPIO = {
     "classico-cacau-tamaras": SET[19],
     "classico-pera-amendoas": SET[3],
     "classico-cenoura-damasco-cacau": GPT[13],
-    "classico-mandala-morango": GPT[0],
     "festa-limao-mirtilos": SET[5],
     "festa-cacau-tamaras": SET[6],
     "festa-damasco-banana": SET[7],
     "festa-maca-baunilha": Image.open(SRC / "extras" / "festa-maca-baunilha.jpg").convert("RGB"),  # foto enviada à parte
+    "festa-mandala-morango": Image.open(SRC / "extras" / "festa-mandala-morango.jpg").convert("RGB"),  # foto enviada à parte
     "vegano-chocolatudo": SET[8],
     "vegano-limao-siciliano": SET[10],
     "vegano-chocolate-banana": ANT[0],            # TODO(conteúdo) P5: baixa resolução
@@ -167,6 +167,7 @@ CARDAPIO = {
     "docinho-cacau-avela": SET[12],
     "docinho-beijinho": SET[14],
     "docinho-cajuzinho": SET[13],
+    "muffin-cacau": Image.open(SRC / "extras" / "muffin-cacau.jpg").convert("RGB"),  # foto enviada à parte (baixa resolução)
     "muffin-cenoura": SET[17],
     "granola": SET[15],
 }
