@@ -21,13 +21,13 @@ describe('dados', () => {
   })
   it('contagem por categoria e linhas ajustadas (v4)', () => {
     const n = Object.fromEntries(categorias.map((c) => [c.id, c.itens.length]))
-    expect(n).toEqual({ classicos: 7, festa: 4, veganos: 5, docinhos: 3, muffins: 3, granola: 1, kits: 3 })
+    expect(n).toEqual({ classicos: 6, festa: 5, veganos: 5, docinhos: 3, muffins: 3, granola: 1, kits: 3 })
     // Os bolos veganos contêm glúten: selo Vegano, nunca Sem glúten
     const veganos = categorias.find((c) => c.id === 'veganos')
     expect(veganos.itens.every((i) => i.tags.includes('vg') && !i.tags.includes('sg'))).toBe(true)
     expect(veganos.nota.toLowerCase()).not.toContain('glúten')
     const ids = categorias.flatMap((c) => c.itens.map((i) => i.id))
-    for (const x of ['vegano-laranja', 'classico-maca-baunilha-nozes']) expect(ids).not.toContain(x)
+    for (const x of ['vegano-laranja', 'classico-maca-baunilha-nozes', 'classico-mandala-morango']) expect(ids).not.toContain(x)
   })
   it('nunca usa "baixo índice glicêmico"', () => {
     expect(JSON.stringify(categorias).toLowerCase()).not.toContain('índice glicêmico')
@@ -59,7 +59,7 @@ describe('renderCardapio', () => {
     expect(tabs[0].getAttribute('aria-selected')).toBe('true')
     const panels = root.querySelectorAll('[role="tabpanel"]')
     expect([...panels].filter((p) => !p.hidden)).toHaveLength(1)
-    expect(panels[0].querySelectorAll('.produto')).toHaveLength(7)
+    expect(panels[0].querySelectorAll('.produto')).toHaveLength(6)
   })
 
   it('clicar numa aba troca o painel e dispara cardapio:change', () => {

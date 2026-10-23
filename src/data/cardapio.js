@@ -55,10 +55,6 @@ export const categorias = [
         descricao: 'Massa de cenoura e damascos. Coberto com ganache de chocolate 50% Baby Friendly e finalizado com physalis.',
         foto: img('classico-cenoura-damasco-cacau'), alt: 'Bolo de cenoura e damasco com ganache de chocolate',
         opcoes: [{ rotulo: 'Pequeno', detalhe: '9 a 10 fatias · 900 g', preco: 180 }, { rotulo: 'Médio', detalhe: '12 a 14 fatias · 1,2 kg', preco: 290 }] },
-      { id: 'classico-mandala-morango', nome: 'Mandala de Morango', tags: ['bf', 'sazonal'],
-        descricao: 'Bolo de cacau 100%, tâmaras e frutas secas, coberto com ganache de chocolate 50% e decorado com morangos frescos.',
-        foto: img('classico-mandala-morango'), alt: 'Bolo coberto com morangos em formato de mandala',
-        opcoes: [{ rotulo: 'Pequeno', detalhe: '8 a 12 fatias · 850 g', preco: 190 }, { rotulo: 'Médio', detalhe: '15 a 17 fatias · 1,5 kg', preco: 280 }] },
     ],
   },
   {
@@ -78,6 +74,10 @@ export const categorias = [
         descricao: 'Massa de maçã e baunilha. Recheio de creme de baunilha e geleia de maçãs. Cobertura de creme de baunilha, finalizada com maçãs e mirtilos frescos.',
         foto: img('festa-maca-baunilha'), alt: 'Bolo coberto de creme, decorado com fatias de maçã, mirtilos e hortelã',
         opcoes: [SOB_CONSULTA], pendente: ['preco'] }, // TODO(conteúdo) P15: tags e preços (a Tânia vai enviar)
+      { id: 'festa-mandala-morango', nome: 'Mandala de Morango', tags: ['bf', 'sazonal'],
+        descricao: 'Bolo de cacau 100%, tâmaras e frutas secas, coberto com ganache de chocolate 50% e decorado com morangos frescos.',
+        foto: img('festa-mandala-morango'), alt: 'Bolo de cacau visto de cima, coberto com morangos inteiros e fatiados em mandala',
+        opcoes: [{ rotulo: 'Pequeno', detalhe: '8 a 12 fatias · 850 g', preco: 190 }, { rotulo: 'Médio', detalhe: '15 a 17 fatias · 1,5 kg', preco: 280 }] },
     ],
   },
   {
