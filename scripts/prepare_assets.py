@@ -205,10 +205,14 @@ def main():
     icones()
     # Decorações
     salvar_jpg(quadrada(SET[18], 700), OUT / "deco" / "frutas-folha.jpg")
-    # Foto da seção "O que vai dentro" (enviada à parte), no tamanho original
+    # Foto da seção "O que vai dentro" (enviada à parte): original (886px) e 1200px para telas largas,
+    # ampliada com Lanczos + nitidez leve (fica melhor que o navegador esticar a de 886px)
     ing = Image.open(SRC / "extras" / "ingredientes.jpg").convert("RGB")
-    ing.save(OUT / "ingredientes.webp", "WEBP", quality=80, method=6)
-    salvar_jpg(ing, OUT / "ingredientes.jpg")
+    grande = ing.resize((1200, round(ing.height * 1200 / ing.width)), Image.LANCZOS)
+    grande = grande.filter(ImageFilter.UnsharpMask(radius=1.2, percent=60, threshold=2))
+    for img, sufixo in ((ing, ""), (grande, "-1200")):
+        img.save(OUT / f"ingredientes{sufixo}.webp", "WEBP", quality=82, method=6)
+        salvar_jpg(img, OUT / f"ingredientes{sufixo}.jpg", 82)
     print("ok")
 
 if __name__ == "__main__":

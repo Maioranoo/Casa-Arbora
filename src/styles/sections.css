@@ -60,8 +60,9 @@
 /* Ingredientes */
 .ingredientes { z-index: 1; background: var(--c-bege); margin-top: 18px; }
 .ingredientes .rasgado { color: var(--c-bege); }
-.ingredientes__foto { display: block; max-width: 886px; margin-top: var(--sp-5); } /* não amplia além do original */
-.ingredientes__foto img { width: 100%; height: auto; border-radius: var(--r-lg); box-shadow: var(--sh-md); }
+/* Celular: foto de borda a borda (sai do recuo lateral do container) */
+.ingredientes__foto { display: block; margin: var(--sp-5) calc(-1 * var(--gutter)) 0; }
+.ingredientes__foto img { display: block; width: 100%; height: auto; }
 
 /* Depoimentos */
 .depoimentos { z-index: 1; background: var(--c-creme); padding-top: var(--sp-6); }
@@ -103,6 +104,8 @@
   .selo-item { grid-template-columns: 1fr; justify-items: center; text-align: center; }
   .selo-item img { width: 96px; height: 96px; }
   .grade-produtos { grid-template-columns: repeat(2, 1fr); }
+  .ingredientes__foto { margin-inline: 0; }
+  .ingredientes__foto img { aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 60%; border-radius: var(--r-lg); box-shadow: var(--sh-md); }
   .encomendar__grade { grid-template-columns: 1.2fr 0.8fr; align-items: center; }
   .btn--bloco { width: auto; }
   .encomendar__marque { text-align: left; } /* botão deixa de ser 100%: alinha com ele */
@@ -134,5 +137,6 @@
   .cake-layer { --cake-tam: min(46vw, 640px); width: var(--cake-tam); right: max(2vw, calc((100vw - var(--container)) / 2 - 40px)); top: calc(var(--header-h) + 4vh); bottom: auto; }
   .deco--folha-2 { top: 46%; }
   .grade-produtos { grid-template-columns: repeat(3, 1fr); }
+  .ingredientes__foto img { aspect-ratio: 2 / 1; object-position: 50% 40%; }
   .depoimentos__lista { grid-template-columns: repeat(3, 1fr); }
 }
