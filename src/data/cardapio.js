@@ -9,14 +9,15 @@ const P_FESTA = { rotulo: 'Pequeno', detalhe: '12 a 14 fatias · 1,2 kg', preco:
 const M_FESTA = { rotulo: 'Médio', detalhe: '22 a 24 fatias · 2,2 kg', preco: 388 }
 const P_VEGANO = { rotulo: 'Pequeno', detalhe: '7 a 9 fatias · 800 g', preco: 120 }
 const M_VEGANO = { rotulo: 'Médio', detalhe: '12 a 14 fatias · 1,2 kg', preco: 160 }
-const CAIXA_DOCINHOS = { rotulo: 'Caixa com 15', detalhe: 'mesmo sabor · R$ 6 cada', preco: 90 }
-const CAIXA_MUFFINS = { rotulo: 'Caixa com 24', detalhe: 'mesmo sabor', preco: 120 }
+const CAIXA_DOCINHOS = { rotulo: 'Caixa com 15', detalhe: 'mesmo sabor · R$ 7 cada', preco: 105 }
+const CAIXA_MUFFINS = { rotulo: 'Caixa com 24', detalhe: 'mesmo sabor', preco: 149 }
 const SOB_CONSULTA = { rotulo: 'Sob consulta', detalhe: '', preco: null }
 
-const NOTA_BF = 'Não contém açúcar, lactose, glúten, corantes ou conservantes. Adoçado com frutas frescas e secas, 100% vegano.'
+// "\n" vira quebra de linha na nota do cardápio
+const NOTA_BF = 'Não contém açúcar, lactose, glúten, corantes ou conservantes.\nAdoçado com frutas frescas e secas, 100% vegano.'
 
 const vegano = (id, nome, extra = {}) => ({
-  id: `vegano-${id}`, nome, tags: ['vg', 'sg'],
+  id: `vegano-${id}`, nome, tags: ['vg'], // os bolos veganos contêm glúten
   descricao: `Bolo vegano de ${nome}, adoçado com açúcar demerara orgânico.`, // TODO(conteúdo) P6: linha vegana será refeita pela Tânia
   foto: img(`vegano-${id}`), alt: `Bolo vegano de ${nome}`,
   opcoes: [P_VEGANO, M_VEGANO], pendente: ['descricao'], ...extra,
@@ -33,7 +34,7 @@ export const TAGS = {
 export const categorias = [
   {
     id: 'classicos', nome: 'Clássicos', subtitulo: 'Baby Friendly · uma camada',
-    nota: `Pequeno: 9 a 10 fatias, 900 g · Médio: 12 a 14 fatias, 1,2 kg. ${NOTA_BF}`,
+    nota: `Pequeno: 9 a 10 fatias, 900 g · Médio: 12 a 14 fatias, 1,2 kg.\n${NOTA_BF}`,
     itens: [
       { id: 'classico-limao-mirtilos', nome: 'Limão Siciliano & Mirtilos', tags: ['bf'],
         descricao: 'Massa de limão siciliano e mirtilos. Finalizado com leite de coco em pó, raspas de limão e physalis.',
@@ -62,7 +63,7 @@ export const categorias = [
   },
   {
     id: 'festa', nome: 'Festa', subtitulo: 'Baby Friendly · duas camadas',
-    nota: `Pequeno: 12 a 14 fatias, 1,2 kg · Médio: 22 a 24 fatias, 2,2 kg. Transporte com cuidado para preservar estrutura, cobertura e decoração. ${NOTA_BF}`,
+    nota: `Pequeno: 12 a 14 fatias, 1,2 kg · Médio: 22 a 24 fatias, 2,2 kg.\nTransporte com cuidado para preservar estrutura, cobertura e decoração.\n${NOTA_BF}`,
     itens: [
       { id: 'festa-limao-mirtilos', nome: 'Limão Siciliano & Mirtilos', tags: ['bf'],
         descricao: 'Massa de limão siciliano e mirtilos. Recheio de creme de limão. Cobertura de creme de limão, mirtilos frescos, physalis e raspas de limão.',
@@ -74,14 +75,14 @@ export const categorias = [
         descricao: 'Massa de damascos e banana. Recheio de frutas vermelhas com creme de laranja e damasco. Cobertura de creme de laranja, damascos e frutas vermelhas frescas.',
         foto: img('festa-damasco-banana'), alt: 'Bolo de festa com morangos, mirtilos e uvas', opcoes: [P_FESTA, M_FESTA] },
       { id: 'festa-maca-baunilha', nome: 'Maçã & Baunilha', tags: ['sc'],
-        descricao: 'Bolo de maçã e baunilha.', // TODO(conteúdo) P15: descrição, tags e preços (a Tânia vai enviar)
+        descricao: 'Massa de maçã e baunilha. Recheio de creme de baunilha e geleia de maçãs. Cobertura de creme de baunilha, finalizada com maçãs e mirtilos frescos.',
         foto: img('festa-maca-baunilha'), alt: 'Bolo coberto de creme, decorado com fatias de maçã, mirtilos e hortelã',
-        opcoes: [SOB_CONSULTA], pendente: ['descricao', 'preco'] },
+        opcoes: [SOB_CONSULTA], pendente: ['preco'] }, // TODO(conteúdo) P15: tags e preços (a Tânia vai enviar)
     ],
   },
   {
-    id: 'veganos', nome: 'Veganos', subtitulo: 'Linha vegana tradicional',
-    nota: 'Sem ingredientes de origem animal. Sem glúten. Adoçados com açúcar demerara orgânico. Sem corantes ou conservantes. Pequeno: 7 a 9 fatias, 800 g · Médio: 12 a 14 fatias, 1,2 kg.',
+    id: 'veganos', nome: 'Veganos', subtitulo: 'Bolos veganos tradicionais',
+    nota: 'Pequeno: 7 a 9 fatias, 800 g · Médio: 12 a 14 fatias, 1,2 kg.\nNão contém ingredientes de origem animal, corantes ou conservantes.\nAdoçados com açúcar demerara orgânico, 100% veganos.',
     itens: [
       vegano('chocolatudo', 'Chocolatudo'),
       vegano('limao-siciliano', 'Limão Siciliano'),
@@ -92,7 +93,7 @@ export const categorias = [
   },
   {
     id: 'docinhos', nome: 'Docinhos', subtitulo: 'Baby Friendly',
-    nota: `Servidos individualmente em forminhas de papel nº 5. ${NOTA_BF}`,
+    nota: `Servidos individualmente em forminhas de papel nº 5.\n${NOTA_BF}`,
     itens: [
       { id: 'docinho-cacau-avela', nome: 'Cacau & Avelã', tags: ['bf'], descricao: 'Avelãs, tâmaras, frutas secas, cacau 100%, baunilha e flor de sal.',
         foto: img('docinho-cacau-avela'), alt: 'Docinhos de cacau e avelã', opcoes: [CAIXA_DOCINHOS] },
@@ -104,8 +105,12 @@ export const categorias = [
   },
   {
     id: 'muffins', nome: 'Muffins', subtitulo: 'Baby Friendly',
-    nota: `Ótimo para o lanche da escola. Pode congelar para ter sempre em casa. ${NOTA_BF}`,
+    nota: `Ótimo para o lanche da escola. Pode congelar para ter sempre em casa.\n${NOTA_BF}`,
     itens: [
+      { id: 'muffin-banana', nome: 'Banana', tags: ['bf'], descricao: 'Massa de banana com recheio de pedacinhos de banana.',
+        foto: img('muffin-cacau'), alt: 'Muffins escuros, alguns com rodela de banana por cima', opcoes: [CAIXA_MUFFINS], pendente: ['foto'] },
+      { id: 'muffin-cacau', nome: 'Cacau', tags: ['bf'], descricao: 'Massa de cacau com recheio de gotas de chocolate Baby Friendly.',
+        foto: img('muffin-cacau'), alt: 'Muffins de cacau em uma travessa', opcoes: [CAIXA_MUFFINS], pendente: ['foto-baixa-resolucao'] },
       { id: 'muffin-cenoura', nome: 'Cenoura', tags: ['bf'], descricao: 'Massa de damasco e cenoura com recheio de gotas de chocolate Baby Friendly.',
         foto: img('muffin-cenoura'), alt: 'Muffins de cenoura com gotas de chocolate', opcoes: [CAIXA_MUFFINS] },
     ],

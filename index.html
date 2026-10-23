@@ -112,9 +112,9 @@
       <svg class="deco deco--folha-1" data-parallax="-30" width="90" height="90" aria-hidden="true"><use href="#i-folha"/></svg>
       <svg class="deco deco--folha-2" data-parallax="40" width="60" height="60" aria-hidden="true"><use href="#i-folha"/></svg>
       <div class="container hero__conteudo">
-        <p class="manuscrita hero__kicker">Feito à mão, sem açúcar refinado</p>
+        <p class="manuscrita hero__kicker">Feitos artesanalmente</p>
         <h1 class="hero__titulo">Bolos de verdade, doces por natureza</h1>
-        <p class="hero__sub">Bolos e doces Baby Friendly e veganos, adoçados com frutas frescas e secas. Feitos sob encomenda no ABC Paulista.</p>
+        <p class="hero__sub">Bolos e doces Baby Friendly e veganos, adoçados com frutas frescas e secas. Feitos sob encomenda.</p>
         <div class="hero__acoes">
           <a class="btn btn--primario btn--grande" href="#cardapio">Ver cardápio <svg width="20" height="20" aria-hidden="true"><use href="#i-seta"/></svg></a>
           <a class="btn btn--link" href="#encomendar">Fazer encomenda</a>
@@ -122,7 +122,7 @@
         <ul class="selos-hero">
           <li><svg width="28" height="28" aria-hidden="true"><use href="#i-sem-acucar"/></svg>Sem açúcar refinado</li>
           <li><svg width="28" height="28" aria-hidden="true"><use href="#i-natural"/></svg>Ingredientes naturais</li>
-          <li><svg width="28" height="28" aria-hidden="true"><use href="#i-mao"/></svg>Feito à mão</li>
+          <li><svg width="28" height="28" aria-hidden="true"><use href="#i-mao"/></svg>Artesanal</li>
         </ul>
       </div>
     </section>
@@ -135,18 +135,26 @@
         <ul class="selos-lista">
           <li class="selo-item" data-reveal>
             <img src="/images/selos/baby-friendly.png" alt="" width="96" height="96" loading="lazy" decoding="async">
-            <div><h3>Baby Friendly</h3><p>A partir de 9 meses. Sem açúcar adicionado, sem adoçantes, sem polióis, sem glúten, sem leite, sem lactose, sem caseína e sem ingredientes de origem animal. Adoçado com frutas frescas e secas.</p></div>
+            <div><h3>Baby Friendly</h3>
+              <dl class="selo-item__lista">
+                <div><dt>Sem açúcar</dt><dd>Os bolos são adoçados naturalmente apenas com frutas secas e frescas.</dd></div>
+                <div><dt>100% vegano</dt><dd>Não usamos nenhum ingrediente de origem animal.</dd></div>
+                <div><dt>Sem glúten e sem lactose</dt><dd>Ideal para quem tem intolerância e alergias.</dd></div>
+                <div><dt>Sem corantes ou conservantes</dt><dd>Apenas ingredientes naturais e saudáveis, zero ultraprocessados.</dd></div>
+              </dl>
+              <p>É indicado para bebês a partir de 9 meses, pessoas veganas, pessoas com restrições alimentares e para todos que desejam saborear um doce saudável.</p>
+            </div>
           </li>
           <li class="selo-item" data-reveal>
             <img src="/images/selos/sem-gluten.png" alt="" width="96" height="96" loading="lazy" decoding="async">
-            <div><h3>Sem glúten</h3><p>Toda a linha Baby Friendly, os bolos veganos e a granola.</p></div>
+            <div><h3>Sem glúten</h3><p>Indicado para intolerantes ao glúten e celíacos.</p></div>
           </li>
           <li class="selo-item" data-reveal>
             <img src="/images/selos/vegano.png" alt="" width="96" height="96" loading="lazy" decoding="async">
             <div><h3>100% Vegano</h3><p>Sem ingredientes de origem animal. A linha vegana tradicional é adoçada com açúcar demerara orgânico.</p></div>
           </li>
         </ul>
-        <p class="faixa__nota">Tem alergia, intolerância ou galactosemia? Conte antes de encomendar — avaliamos o preparo e o risco de contaminação cruzada. Galactosemia: somente sob anamnese prévia.</p>
+        <p class="faixa__nota">Tem alergia (APLV), intolerância, galactosemia, diabetes ou alguma alergia específica? Nos informe antes de encomendar. Galactosemia somente sob anamnese prévia.</p>
       </div>
       <svg class="rasgado rasgado--base" aria-hidden="true"><use href="#rasgado"/></svg>
     </section>
@@ -154,7 +162,7 @@
     <!-- 3. CARDÁPIO (gerado a partir de src/data/cardapio.js) -->
     <section class="secao cardapio" id="cardapio" aria-labelledby="t-cardapio">
       <div class="container">
-        <p class="manuscrita" data-reveal>Escolha o seu</p>
+        <p class="manuscrita" data-reveal>Hora de escolher</p>
         <h2 class="secao__titulo" id="t-cardapio" data-reveal>Cardápio</h2>
         <p class="secao__sub" data-reveal>Toque numa categoria, escolha o tamanho e encomende pelo WhatsApp.</p>
         <div class="cardapio__app" data-cardapio>
