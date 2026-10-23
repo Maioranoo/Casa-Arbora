@@ -1,6 +1,6 @@
 # Casa Árbora — Bolos de verdade, doces por natureza
 
-Landing page da **Casa Árbora**, confeitaria artesanal do ABC Paulista (SP) que faz bolos e doces **sem açúcar refinado**, **Baby Friendly** e **veganos**, adoçados com frutas frescas e secas.
+Landing page da **Casa Árbora**, confeitaria artesanal que faz bolos e doces **sem açúcar refinado**, **Baby Friendly** e **veganos**, adoçados com frutas frescas e secas.
 
 ![Mobile first](https://img.shields.io/badge/mobile-first-B4532F) ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white) ![GSAP](https://img.shields.io/badge/GSAP-ScrollTrigger-88CE02?logo=greensock&logoColor=white) ![Vitest](https://img.shields.io/badge/testes-Vitest-6E9F18?logo=vitest&logoColor=white)
 
