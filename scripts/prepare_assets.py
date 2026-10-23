@@ -155,7 +155,7 @@ CARDAPIO = {
     "classico-pera-amendoas": SET[3],
     "classico-cenoura-damasco-cacau": Image.open(SRC / "extras" / "classico-cenoura-damasco-cacau.jpg").convert("RGB"),  # foto enviada à parte
     "festa-limao-mirtilos": SET[5],
-    "festa-cacau-tamaras": SET[6],
+    "festa-cacau-tamaras": Image.open(SRC / "extras" / "festa-cacau-tamaras.jpg").convert("RGB"),  # foto enviada à parte
     "festa-damasco-banana": SET[7],
     "festa-maca-baunilha": Image.open(SRC / "extras" / "festa-maca-baunilha.jpg").convert("RGB"),  # foto enviada à parte
     "festa-mandala-morango": Image.open(SRC / "extras" / "festa-mandala-morango.jpg").convert("RGB"),  # foto enviada à parte
